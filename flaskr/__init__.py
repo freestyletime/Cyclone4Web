@@ -11,11 +11,7 @@ def create_app(test_config=None):
     from .src import scode
     app.register_blueprint(editor)
     app.register_blueprint(button)
-    app.register_blueprint(scode)
-
-    @app.route('/')
-    def index():
-        return render_template('index.html')    
+    app.register_blueprint(scode)          
 
     @app.errorhandler(404)
     def invalid_route(e): 
