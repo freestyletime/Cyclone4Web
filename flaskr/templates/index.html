@@ -1,0 +1,25 @@
+{% extends "_layouts/default.html" %}
+{% block title %}Index{% endblock %}
+{% block description %}Cyclone{% endblock %}
+{% block content %}
+    <p class="important">
+      Welcome to my awesome homepage.
+    </p>
+
+	<div id="editor">I love coding</div>
+
+	<p class="important">
+		Great Editor
+	</p>
+{% endblock %}
+{% block script %}
+	<script src="{{ url_for('static', filename= 'js/ace/ace.js') }}" type="text/javascript" charset="utf-8"></script>
+	<script src="{{ url_for('static', filename= 'js/ace/theme-twilight.js') }}" type="text/javascript" charset="utf-8"></script>
+	<script src="{{ url_for('static', filename= 'js/ace/mode-javascript.js') }}" type="text/javascript" charset="utf-8"></script>
+	<script>
+		var editor = ace.edit("editor");
+		editor.setTheme("ace/theme/twilight");
+		var JavaScriptMode = ace.require("ace/mode/javascript").Mode;
+		editor.session.setMode(new JavaScriptMode());
+	</script>
+{% endblock %}
