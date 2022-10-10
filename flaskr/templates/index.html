@@ -1,9 +1,13 @@
 {% extends "_layouts/default.html" %}
 {% block content %}
 	<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-		
-		<div class="btn-group" role="group" aria-label="group2">
-			<button class="btn btn-primary btn-lg">Editor Theme</button>
+		<!-- run button -->
+		<div class="btn-group mr-2" role="group" aria-label="group1">
+			<button id="run" type="button" class="btn btn-danger btn-lg">Run</button>
+		</div>
+		<!-- theme button -->
+		<div class="btn-group navbar-right" role="group" aria-label="group2">
+			<button class="btn btn-primary btn-lg">Theme</button>
 			<button class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">
 			  <span class="caret"></span>
 			</button>
@@ -18,16 +22,12 @@
 				<li id="solarized_dark"><a>Solarized Dark</a></li>
 			</ul>
 		</div>
-
-		<div class="btn-group mr-2" role="group" aria-label="group1">
-			<button id="run" type="button" class="btn btn-danger btn-lg">Run</button>
-		</div>
 	</div>	
 
-
-
 	<br/>
+	<!-- code editor -->
 	<div id="editor">{{ code }}</div>
+	<div id="output"></div>
 	<br/>
 {% endblock %}
 {% block script %}
@@ -46,6 +46,8 @@
 	<script src="{{ url_for('static', filename= 'js/ace/mode-java.js') }}" type="text/javascript" charset="utf-8"></script>
 	<script>
 		var editor = ace.edit("editor");
+		editor.setFontSize(14);
+		editor.setShowPrintMargin(false);
 		// set theme
 		$("li#chrome").click(function(){
 			editor.setTheme("ace/theme/chrome");
@@ -82,9 +84,8 @@
 				code: code
 			},
 			function(data, status){
-				alert("Data: " + data.response);
+				$("div#output").empty().append("<p style='white-space: pre-line'>"+ data.response + "</p>");
 			});
 		});
-		$("button#run").attr("aria-pressed", "false");
 	</script>
 {% endblock %}
