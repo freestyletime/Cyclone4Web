@@ -1,13 +1,14 @@
-from flask import Flask
+import os, sys
 
-app = Flask(__name__)
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+from flaskr import create_app
 
-@app.route('/')
-def hello():
-    return 'Hello, world'
+app = create_app()
 
+# if __name__ == "__main__":
+#     from waitress import serve
+#     serve(app, host="0.0.0.0")
 
-@app.route('/test')
-def test():
-    return 'Test'
+if __name__ == "__main__":
+    app.run(port=8080)
