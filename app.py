@@ -1,7 +1,13 @@
-from flaskr import create_app
+from flask import Flask
 
-app = create_app()
+app = Flask(__name__)
 
-# if __name__ == "__main__":
-#     from waitress import serve
-#     serve(app, host="0.0.0.0")
+
+@app.route('/')
+def hello():
+    return 'Hello, world'
+
+
+@app.route('/test')
+def test():
+    return 'Test'
