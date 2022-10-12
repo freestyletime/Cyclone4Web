@@ -1,91 +1,131 @@
 {% extends "_layouts/default.html" %}
 {% block content %}
-	<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-		<!-- run button -->
-		<div class="btn-group mr-2" role="group" aria-label="group1">
-			<button id="run" type="button" class="btn btn-danger btn-lg">Run</button>
+<div class="panel row">
+	<div class="menu col-md-3">
+		<div class="col">
+			<b>菜单</b><br/>
+			HTML<br/>
+			CSS<br/>
+			JavaScript
 		</div>
-		<!-- theme button -->
-		<div class="btn-group navbar-right" role="group" aria-label="group2">
-			<button class="btn btn-primary btn-lg">Theme</button>
-			<button class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">
-			  <span class="caret"></span>
-			</button>
-			<ul id="Theme" class="dropdown-menu">
-				<li id="chrome"><a>Chrome</a></li>
-				<li id="eclipse"><a>Eclipse</a></li>
-				<li id="github"><a>GitHub</a></li>
-				<li id="xcode"><a>XCode</a></li>
-				<li id="chaos"><a>Chaos</a></li>
-				<li id="dracula"><a>Dracula</a></li>
-				<li id="solarized_light"><a>Solarized Light</a></li>
-				<li id="solarized_dark"><a>Solarized Dark</a></li>
-			</ul>
+	</div>
+	<div class="content col-md-7">
+		<div class="col-auto">
+			<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+				<!-- run button -->
+				<div class="btn-group mr-2" role="group" aria-label="group1">
+					<button id="run" type="button" class="btn btn-danger btn-lg">Run</button>
+				</div>
+				<!-- save button -->
+				<div class="btn-group mr-2" role="group" aria-label="group2">
+					<button id="Copy" type="button" class="btn btn-info btn-lg">Copy</button>
+				</div>
+				<!-- clear button -->
+				<div class="btn-group mr-2" role="group" aria-label="group3">
+					<button id="clear" type="button" class="btn btn-warning btn-lg">Clear</button>
+				</div>
+				<!-- Upload button -->
+				<div class="btn-group mr-2" role="group" aria-label="group4">
+					<button id="upload" type="button" class="btn btn-primary btn-lg">Upload</button>
+				</div>
+				<!-- theme button -->
+				<div class="btn-group navbar-right" role="group" aria-label="group5">
+					<button class="btn btn-primary btn-lg">Theme</button>
+					<button class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">
+						<span class="caret"></span>
+					</button>
+					<ul id="Theme" class="dropdown-menu">
+						<li id="chrome"><a>Chrome</a></li>
+						<li id="eclipse"><a>Eclipse</a></li>
+						<li id="github"><a>GitHub</a></li>
+						<li id="xcode"><a>XCode</a></li>
+						<li id="chaos"><a>Chaos</a></li>
+						<li id="dracula"><a>Dracula</a></li>
+						<li id="solarized_light"><a>Solarized Light</a></li>
+						<li id="solarized_dark"><a>Solarized Dark</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
-	</div>	
 
-	<br/>
-	<!-- code editor -->
-	<div id="editor">{{ code }}</div>
-	<div id="output"></div>
-	<br/>
+		<br />
+		<!-- code editor -->
+		<div id="editor" class="col-auto">{{ code }}</div>
+		<div id="result" class="col-auto">
+			<textarea id="output" placeholder="Runing result……" readonly="true" class="form-control"
+				rows="6">Hello World!</textarea>
+		</div>
+
+		<br />
+	</div>
+</div>
 {% endblock %}
 {% block script %}
-	<!-- ACE -->
-	<!-- Code Editor configuration -->
-	<script src="{{ url_for('static', filename= 'js/ace/theme-chaos.js') }}" type="text/javascript" charset="utf-8"></script>
-	<script src="{{ url_for('static', filename= 'js/ace/theme-chrome.js') }}" type="text/javascript" charset="utf-8"></script>
-	<script src="{{ url_for('static', filename= 'js/ace/theme-eclipse.js') }}" type="text/javascript" charset="utf-8"></script>
-	<script src="{{ url_for('static', filename= 'js/ace/theme-github.js') }}" type="text/javascript" charset="utf-8"></script>
-	<script src="{{ url_for('static', filename= 'js/ace/theme-xcode.js') }}" type="text/javascript" charset="utf-8"></script>
-	<script src="{{ url_for('static', filename= 'js/ace/theme-dracula.js') }}" type="text/javascript" charset="utf-8"></script>
-	<script src="{{ url_for('static', filename= 'js/ace/theme-solarized_light.js') }}" type="text/javascript" charset="utf-8"></script>
-	<script src="{{ url_for('static', filename= 'js/ace/theme-solarized_dark.js') }}" type="text/javascript" charset="utf-8"></script>
-	<script src="{{ url_for('static', filename= 'js/ace/ace.js') }}" type="text/javascript" charset="utf-8"></script>
-	<script src="{{ url_for('static', filename= 'js/ace/theme-twilight.js') }}" type="text/javascript" charset="utf-8"></script>
-	<script src="{{ url_for('static', filename= 'js/ace/mode-java.js') }}" type="text/javascript" charset="utf-8"></script>
-	<script>
-		var editor = ace.edit("editor");
-		editor.setFontSize(14);
-		editor.setShowPrintMargin(false);
-		// set theme
-		$("li#chrome").click(function(){
-			editor.setTheme("ace/theme/chrome");
-		});
-		$("li#eclipse").click(function(){
-			editor.setTheme("ace/theme/eclipse");
-		});
-		$("li#github").click(function(){
-			editor.setTheme("ace/theme/github");
-		});
-		$("li#xcode").click(function(){
-			editor.setTheme("ace/theme/xcode");
-		});
-		$("li#chaos").click(function(){
-			editor.setTheme("ace/theme/chaos");
-		});
-		$("li#dracula").click(function(){
-			editor.setTheme("ace/theme/dracula");
-		});
-		$("li#solarized_light").click(function(){
-			editor.setTheme("ace/theme/solarized_light");
-		});
-		$("li#solarized_dark").click(function(){
-			editor.setTheme("ace/theme/solarized_dark");
-		});
+<!-- ACE -->
+<!-- Code Editor configuration -->
+<script src="{{ url_for('static', filename= 'js/ace/theme-chaos.js') }}" type="text/javascript"
+	charset="utf-8"></script>
+<script src="{{ url_for('static', filename= 'js/ace/theme-chrome.js') }}" type="text/javascript"
+	charset="utf-8"></script>
+<script src="{{ url_for('static', filename= 'js/ace/theme-eclipse.js') }}" type="text/javascript"
+	charset="utf-8"></script>
+<script src="{{ url_for('static', filename= 'js/ace/theme-github.js') }}" type="text/javascript"
+	charset="utf-8"></script>
+<script src="{{ url_for('static', filename= 'js/ace/theme-xcode.js') }}" type="text/javascript"
+	charset="utf-8"></script>
+<script src="{{ url_for('static', filename= 'js/ace/theme-dracula.js') }}" type="text/javascript"
+	charset="utf-8"></script>
+<script src="{{ url_for('static', filename= 'js/ace/theme-solarized_light.js') }}" type="text/javascript"
+	charset="utf-8"></script>
+<script src="{{ url_for('static', filename= 'js/ace/theme-solarized_dark.js') }}" type="text/javascript"
+	charset="utf-8"></script>
+<script src="{{ url_for('static', filename= 'js/ace/ace.js') }}" type="text/javascript" charset="utf-8"></script>
+<script src="{{ url_for('static', filename= 'js/ace/theme-twilight.js') }}" type="text/javascript"
+	charset="utf-8"></script>
+<script src="{{ url_for('static', filename= 'js/ace/mode-java.js') }}" type="text/javascript" charset="utf-8"></script>
+<script>
+	var editor = ace.edit("editor");
+	editor.setFontSize(15);
+	editor.setShowPrintMargin(false);
+	// set theme
+	$("li#chrome").click(function () {
+		editor.setTheme("ace/theme/chrome");
+	});
+	$("li#eclipse").click(function () {
+		editor.setTheme("ace/theme/eclipse");
+	});
+	$("li#github").click(function () {
+		editor.setTheme("ace/theme/github");
+	});
+	$("li#xcode").click(function () {
+		editor.setTheme("ace/theme/xcode");
+	});
+	$("li#chaos").click(function () {
+		editor.setTheme("ace/theme/chaos");
+	});
+	$("li#dracula").click(function () {
+		editor.setTheme("ace/theme/dracula");
+	});
+	$("li#solarized_light").click(function () {
+		editor.setTheme("ace/theme/solarized_light");
+	});
+	$("li#solarized_dark").click(function () {
+		editor.setTheme("ace/theme/solarized_dark");
+	});
 
-		var JavaScriptMode = ace.require("ace/mode/java").Mode;
-		editor.session.setMode(new JavaScriptMode());
-		// set run click event
-		$("button#run").click(function() {
-			var code = editor.getValue();
-			$.post("run",
+	var JavaScriptMode = ace.require("ace/mode/java").Mode;
+	editor.session.setMode(new JavaScriptMode());
+	// set run click event
+	$("button#run").click(function () {
+		$("textarea#output").empty();
+		var code = editor.getValue();
+		$.post("run",
 			{
 				code: code
 			},
-			function(data, status){
-				$("div#output").empty().append("<p style='white-space: pre-line'>"+ data.response + "</p>");
+			function (data, status) {
+				$("textarea#output").append(data.response);
 			});
-		});
-	</script>
+	});
+</script>
 {% endblock %}

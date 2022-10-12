@@ -11,7 +11,11 @@ def create_app(test_config=None):
     from .src import scode
     app.register_blueprint(editor)
     app.register_blueprint(button)
-    app.register_blueprint(scode)          
+    app.register_blueprint(scode)   
+
+    @app.route("/about", methods = ['GET'])
+    def setCode():
+        return render_template('about.html')       
 
     @app.errorhandler(404)
     def invalid_route(e): 

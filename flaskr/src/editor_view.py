@@ -1,4 +1,4 @@
-import os, subprocess, sys
+import subprocess, sys
 from flask import Blueprint, request, render_template, jsonify
 from pathlib import Path
 
