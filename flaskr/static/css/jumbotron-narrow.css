@@ -1,12 +1,6 @@
-/* Space out content a bit */
-html {
-  height: 90%;
-}
-
 body {
   padding-top: 15px;
   padding-bottom: 15px;
-  height: 100%;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -40,7 +34,6 @@ body {
 @media (min-width: 560px) {
   .container {
     max-width: 85%;
-    height: 100%;
   }
 }
 .container-narrow > hr {
@@ -73,11 +66,14 @@ body {
   .footer {
     padding-left: 0;
     padding-right: 0;
-    margin-top: 20px;
   }
   /* Space out the masthead */
   .header {
     margin-bottom: 20px;
+  }
+
+  .footer {
+    margin-top: 20px;
   }
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {

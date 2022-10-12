@@ -15,7 +15,11 @@ def create_app(test_config=None):
 
     @app.route("/about", methods = ['GET'])
     def setCode():
-        return render_template('about.html')       
+        return render_template('about.html') 
+
+    @app.route('/')
+    def home():
+        return 'Home Page Route'  
 
     @app.errorhandler(404)
     def invalid_route(e): 

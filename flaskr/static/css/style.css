@@ -15,21 +15,19 @@ h3.text-muted a {text-decoration: none; color: #999999; }
 h3.text-muted a:hover { text-decoration: none; color: #0088cc; }
 
 .panel {
-    height: 85%;
-    margin: 0%;
-}
-
-.menu {
-    height:100%;
-    width:20%;
-    float:left;
+    margin: 0px;
     padding: 5px;
     outline-width: 2pt;
     outline-style: groove;
 }
 
+.menu {
+    width:20%;
+    float:left;
+    padding: 5px;
+}
+
 .content {
-    height:100%;
     width:79.5%;
     float:right;
     padding: 5px;
