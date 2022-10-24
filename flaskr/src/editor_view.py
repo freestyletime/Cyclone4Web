@@ -1,4 +1,5 @@
-import subprocess, sys
+import os, subprocess, sys
+from ..config import const
 from flask import Blueprint, request, render_template, jsonify
 from pathlib import Path
 
@@ -12,6 +13,8 @@ def setCode():
 @editor.route("/run", methods = ['POST'])
 def runCode():
     code = request.form.get('code')
+    id = request.form.get('user_id')
+    print(id)
     Path("Main.java").write_text(code)
     result = subprocess.Popen(["javac", "Main.java"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     stdout, stderr = result.communicate()
@@ -19,3 +22,14 @@ def runCode():
         result = subprocess.Popen(["java", "Main"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         stdout, stderr = result.communicate()
     return jsonify({"response": stdout.decode(sys.getdefaultencoding())})
+
+@editor.route("/examples", methods = ['POST'])
+def getExamplesList():
+    structure = {}
+    for path, dirs, files in os.walk(const.PATH_EXAMPLE):
+        s_folder = path.split(os.sep)[-1]
+        if s_folder:
+            structure[s_folder] = []
+            for name in files:
+                structure[s_folder].append(name)
+    return jsonify({"examples": structure})

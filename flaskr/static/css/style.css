@@ -39,6 +39,11 @@ h3.text-muted a:hover { text-decoration: none; color: #0088cc; }
     padding: 5px;
 }
 
+.examples {
+    overflow-y: scroll;
+    height: 490px;
+}
+
 .content {
     width:79.5%;
     float:right;

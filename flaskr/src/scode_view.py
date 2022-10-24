@@ -1,7 +1,3 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, render_template, jsonify
 
 scode = Blueprint("scode", __name__, url_prefix="/scode")
-
-@scode.route("/hello")
-def getHello():
-    return "Hello"

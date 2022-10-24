@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from .config import Config
 
+
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__)

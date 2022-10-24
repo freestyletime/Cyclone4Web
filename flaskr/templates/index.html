@@ -2,11 +2,12 @@
 {% block content %}
 <div class="panel row">
 	<div class="menu col-md-3">
-		<div >
-			<h4><b>Menu</b></h4><br/>
-			HTML<br/>
-			CSS<br/>
-			JavaScript
+		<div>
+			<h4>Examples</h4>
+			<div class="examples">
+				<ul id="examples_list" class="nav nav-list">
+				</ul>
+			</div>
 		</div>
 	</div>
 	<div class="content col-md-7">
@@ -18,7 +19,7 @@
 				</div>
 				<!-- save button -->
 				<div class="btn-group mr-2" role="group" aria-label="group2">
-					<button id="Copy" type="button" class="btn btn-info btn-lg">Copy</button>
+					<button id="copy" type="button" class="btn btn-info btn-lg">Copy</button>
 				</div>
 				<!-- clear button -->
 				<div class="btn-group mr-2" role="group" aria-label="group3">
@@ -111,17 +112,37 @@
 
 	var JavaScriptMode = ace.require("ace/mode/java").Mode;
 	editor.session.setMode(new JavaScriptMode());
+
 	// set run click event
 	$("button#run").click(function () {
 		$("textarea#output").empty();
 		var code = editor.getValue();
 		$.post("run",
 			{
-				code: code
+				code: code,
+				user_id: getUniqueUserId()
 			},
 			function (data, status) {
 				$("textarea#output").append(data.response);
 			});
 	});
+
+	// load examples
+	$.post("examples", {},
+		function (data, status) {
+			// <ul class="nav nav-list">
+			// 	<li class="nav-header">List header</li>
+			// 	<li class="active"><a href="#">Home</a></li>
+			// 	<li><a href="#">Library</a></li>
+			// </ul>
+			var ems = data.examples;
+			for (var k in ems) {
+				$("ul#examples_list").append("<li class='nav-header'>" + k + "</li>");
+				var list = ems[k];
+				for (var n in list) {
+					$("ul#examples_list").append("<li><a href='#'>" + list[n] + "</a></li>");
+				}
+			}
+		});
 </script>
 {% endblock %}

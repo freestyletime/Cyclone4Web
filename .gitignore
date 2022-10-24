@@ -12,6 +12,7 @@ instance/
 .coverage
 .DS_Store
 htmlcov/
+cyclone/
 
 dist/
 build/
@@ -20,3 +21,4 @@ build/
 MANIFEST.in
 *.java
 *.class
+.vercel
