@@ -13,5 +13,6 @@ class Constants(object):
         self.__dict__[name] = value
 
 const = Constants()
+const.DEFAULT_FILE_NAME = 'Main.java'
 const.PATH_EXAMPLE = './cyclone/examples/'
-const.PATH_TMP_STORAGE = './tmp_storage'
+const.PATH_TMP_STORAGE = './tmp'
