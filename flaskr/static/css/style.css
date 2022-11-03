@@ -41,7 +41,7 @@ h3.text-muted a:hover { text-decoration: none; color: #0088cc; }
 
 .examples {
     overflow-y: scroll;
-    height: 490px;
+    height: 500px;
 }
 
 .content {

@@ -1,3 +1,5 @@
+import os
+
 # It's used for setting web application parameters
 class Config(object):
     DEBUG = True
@@ -13,6 +15,7 @@ class Constants(object):
         self.__dict__[name] = value
 
 const = Constants()
-const.DEFAULT_FILE_NAME = 'Main.java'
-const.PATH_EXAMPLE = './cyclone/examples/'
-const.PATH_TMP_STORAGE = './tmp'
+const.PATH_PROJECT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+const.DEFAULT_FILE_NAME = 'Main.cyclone'
+const.PATH_EXAMPLE = const.PATH_PROJECT + os.sep + 'cyclone' + os.sep + 'examples'
+const.PATH_TMP_STORAGE = const.PATH_PROJECT + os.sep + 'tmp'

@@ -1,34 +1,29 @@
+// setup
 var editor = ace.edit("editor");
 editor.setFontSize(15);
 editor.setShowPrintMargin(false);
+editor.setOptions({
+    enableBasicAutocompletion: true,
+    enableLiveAutocompletion: true,
+    enableSnippets: true
+});
 // set theme
-$("li#chrome").click(function () {
-    editor.setTheme("ace/theme/chrome");
-});
-$("li#eclipse").click(function () {
-    editor.setTheme("ace/theme/eclipse");
-});
-$("li#github").click(function () {
-    editor.setTheme("ace/theme/github");
-});
-$("li#xcode").click(function () {
-    editor.setTheme("ace/theme/xcode");
-});
-$("li#chaos").click(function () {
-    editor.setTheme("ace/theme/chaos");
-});
-$("li#dracula").click(function () {
-    editor.setTheme("ace/theme/dracula");
-});
-$("li#solarized_light").click(function () {
-    editor.setTheme("ace/theme/solarized_light");
-});
-$("li#solarized_dark").click(function () {
-    editor.setTheme("ace/theme/solarized_dark");
+var themelist = ace.require("ace/ext/themelist");
+for(let item of themelist.themes.values()) {
+    $("ul#theme").append("<li id=" + item['name'] + "><a>" + item['caption'] + "</a></li>")
+    $("li#" + item['name']).click(function () {
+        editor.setTheme(item['theme']);
+    });
+}
+
+$("ul#theme").css({
+    'height':'500px',
+    'overflow-y':'scroll'
 });
 
-var JavaScriptMode = ace.require("ace/mode/java").Mode;
-editor.session.setMode(new JavaScriptMode());
+// set mode
+var JavaMode = ace.require("ace/mode/java").Mode;
+editor.session.setMode(new JavaMode());
 
 // set run click event
 $("button#run").click(function () {
@@ -65,5 +60,5 @@ function getExample(folder, file) {
         name: file
     }, function (data, status) {
         editor.setValue(data.code, -1);
-        });
+    });
 }

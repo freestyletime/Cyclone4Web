@@ -31,19 +31,11 @@
 				</div>
 				<!-- theme button -->
 				<div class="btn-group navbar-right" role="group" aria-label="group5">
-					<button class="btn btn-primary btn-lg">Theme</button>
-					<button class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">
+					<button class="btn btn-lg">Theme</button>
+					<button class="btn btn-lg dropdown-toggle" data-toggle="dropdown">
 						<span class="caret"></span>
 					</button>
-					<ul id="Theme" class="dropdown-menu">
-						<li id="chrome"><a>Chrome</a></li>
-						<li id="eclipse"><a>Eclipse</a></li>
-						<li id="github"><a>GitHub</a></li>
-						<li id="xcode"><a>XCode</a></li>
-						<li id="chaos"><a>Chaos</a></li>
-						<li id="dracula"><a>Dracula</a></li>
-						<li id="solarized_light"><a>Solarized Light</a></li>
-						<li id="solarized_dark"><a>Solarized Dark</a></li>
+					<ul id="theme" class="dropdown-menu">
 					</ul>
 				</div>
 			</div>
@@ -62,5 +54,7 @@
 <!-- Code Editor configuration -->
 <script src="{{ url_for('static', filename= 'js/ace/ace.js') }}" type="text/javascript" charset="utf-8"></script>
 <script src="{{ url_for('static', filename= 'js/ace/mode-java.js') }}" type="text/javascript" charset="utf-8"></script>
+<script src="{{ url_for('static', filename= 'js/ace/ext-themelist.js') }}" type="text/javascript" charset="utf-8"></script>
+<script src="{{ url_for('static', filename= 'js/ace/ext-language_tools.js') }}" type="text/javascript" charset="utf-8"></script>
 <script src="{{ url_for('static', filename= 'js/editor.js') }}" type="text/javascript" charset="utf-8"></script>
 {% endblock %}
