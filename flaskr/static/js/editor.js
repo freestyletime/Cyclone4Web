@@ -47,13 +47,15 @@ $("button#save").click(function () {
     }, function (data, status, xhr) {
         if(status == 'success'){
             var header = xhr.getResponseHeader('Content-Disposition');
-            alert(header);
-            const link = document.createElement('a');
-            link.style.display = 'none';
-            link.download = "Main.cyclone";
-            var blob = new Blob([data], {type: 'text/plain'});
-            link.href = window.URL.createObjectURL(blob);
-            link.click();
+            if (header && header.indexOf('attachment') !== -1) {
+                const parts = header.split(';');
+                const link = document.createElement('a');
+                link.style.display = 'none';
+                link.download =  parts[1].split('=')[1];
+                var blob = new Blob([data], {type: 'text/plain'});
+                link.href = window.URL.createObjectURL(blob);
+                link.click();
+            }
         } else {
             //TODO
         }
@@ -61,7 +63,8 @@ $("button#save").click(function () {
 });
 
 $("button#clear").click(function () {
-    
+    var value = editor.getValue();
+    if(value != "") editor.setValue("", -1);
 });
 
 $("button#upload").click(function () {
