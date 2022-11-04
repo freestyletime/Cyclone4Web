@@ -7,6 +7,7 @@ editor.setOptions({
     enableLiveAutocompletion: true,
     enableSnippets: true
 });
+
 // set theme
 var themelist = ace.require("ace/ext/themelist");
 for(let item of themelist.themes.values()) {
@@ -39,6 +40,34 @@ $("button#run").click(function () {
         });
 });
 
+$("button#save").click(function () {
+    var code = editor.getValue();
+    $.post("files", {
+        code: code,
+    }, function (data, status, xhr) {
+        if(status == 'success'){
+            var header = xhr.getResponseHeader('Content-Disposition');
+            alert(header);
+            const link = document.createElement('a');
+            link.style.display = 'none';
+            link.download = "Main.cyclone";
+            var blob = new Blob([data], {type: 'text/plain'});
+            link.href = window.URL.createObjectURL(blob);
+            link.click();
+        } else {
+            //TODO
+        }
+    });
+});
+
+$("button#clear").click(function () {
+    
+});
+
+$("button#upload").click(function () {
+    
+});
+
 // load examples
 $.post("examples", {},
     function (data, status) {
@@ -52,11 +81,11 @@ $.post("examples", {},
                 getExample(this.id, this.text);
             });
         }
-    });
+});
 
 function getExample(folder, file) {
     $.post("example", {
-        parent: folder,
+        folder: folder,
         name: file
     }, function (data, status) {
         editor.setValue(data.code, -1);

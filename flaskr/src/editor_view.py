@@ -1,6 +1,6 @@
 import os, subprocess, sys, time
 from ..config import const
-from flask import Blueprint, request, render_template, jsonify, make_response
+from flask import Blueprint, request, render_template, jsonify, make_response, send_file
 from pathlib import Path
 
 # = = = = = = = = = = = = = = = = = =
@@ -33,7 +33,7 @@ def runCode():
     code = request.form.get('code')
     id = request.form.get('user_id')
     # TODO verify the data
-    parent = const.PATH_TMP_STORAGE + os.sep + id + os.sep
+    parent = const.PATH_TMP_STORAGE + os.sep + id
     path = parent + os.sep + const.DEFAULT_FILE_NAME
     if not Path(parent).exists(): Path(parent).mkdir()
     if not Path(path).exists(): Path(path).touch()
@@ -41,6 +41,19 @@ def runCode():
     result = subprocess.Popen(["./ex.sh", const.PATH_PROJECT, path], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     stdout, stderr = result.communicate()
     return jsonify({"response": stdout.decode(sys.getdefaultencoding())})
+
+
+@editor.route('/files', methods = ['POST'])
+def downLoadFile():
+    code = request.form.get('code')
+    id = request.cookies.get('unique_user_id')
+    # TODO verify the data
+    parent = const.PATH_TMP_STORAGE + os.sep + id
+    path = parent + os.sep + const.DEFAULT_FILE_NAME
+    if not Path(parent).exists(): Path(parent).mkdir()
+    if not Path(path).exists(): Path(path).touch()
+    Path(path).write_text(code)
+    return send_file(path, download_name=const.DEFAULT_FILE_NAME, as_attachment=True)
 
 
 @editor.route("/examples", methods = ['POST'])
@@ -58,7 +71,7 @@ def getExamplesList():
 
 @editor.route("/example", methods = ['POST'])
 def getExample():
-    folder = request.form.get('parent')
+    folder = request.form.get('folder')
     name = request.form.get('name')
     # TODO verify the data
     code = Path(const.PATH_EXAMPLE + os.sep + folder + os.sep + name).read_text()
