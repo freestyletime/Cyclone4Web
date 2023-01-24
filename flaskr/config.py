@@ -15,7 +15,13 @@ class Constants(object):
         self.__dict__[name] = value
 
 const = Constants()
-const.PATH_PROJECT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+# upload configuration
+const.ALLOWED_EXTENSIONS = set(['txt', 'cyclone'])
+const.MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB
+# constant keys & values
+const.FIELD_USER_ID = "unique_user_id"
 const.DEFAULT_FILE_NAME = 'Main.cyclone'
+
+const.PATH_PROJECT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 const.PATH_EXAMPLE = const.PATH_PROJECT + os.sep + 'cyclone' + os.sep + 'examples'
 const.PATH_TMP_STORAGE = const.PATH_PROJECT + os.sep + 'tmp'

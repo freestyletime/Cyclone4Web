@@ -717,18 +717,26 @@ var oop = require("../lib/oop");
 var DocCommentHighlightRules = require("./doc_comment_highlight_rules").DocCommentHighlightRules;
 var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
 var JavaHighlightRules = function () {
-    var keywords = ("abstract|continue|for|new|switch|" +
-        "assert|default|goto|package|synchronized|" +
-        "boolean|do|if|private|this|" +
-        "break|double|implements|protected|throw|" +
-        "byte|else|import|public|throws|" +
-        "case|enum|instanceof|return|transient|" +
-        "catch|extends|int|short|try|" +
-        "char|final|interface|static|void|" +
-        "class|finally|long|strictfp|volatile|" +
-        "const|float|native|super|while|" +
-        "var");
-    var buildinConstants = ("null|Infinity|NaN|undefined");
+    // var keywords = ("abstract|continue|for|new|switch|" +
+    //     "assert|default|goto|package|synchronized|" +
+    //     "boolean|do|if|private|this|" +
+    //     "break|double|implements|protected|throw|" +
+    //     "byte|else|import|public|throws|" +
+    //     "case|enum|instanceof|return|transient|" +
+    //     "catch|extends|int|short|try|" +
+    //     "char|final|interface|static|void|" +
+    //     "class|finally|long|strictfp|volatile|" +
+    //     "const|float|native|super|while|" +
+    //     "var");
+    // var buildinConstants = ("null|Infinity|NaN|undefined");
+    var keywords = ("abstract|assert|at|bool|char|" +
+    "condition|const|check|edge|enum|" +
+    "enumerate|final|for|fresh|goal|" +
+    "graph|int|initial|invariant|label|" +
+    "let|machine|node|normal|prev|" +
+    "on|reach|real|start|state|" +
+    "stop|string|trans|transition|via|where|with");
+    var buildinConstants = ("null|true|false");
     var langClasses = ("AbstractMethodError|AssertionError|ClassCircularityError|" +
         "ClassFormatError|Deprecated|EnumConstantNotPresentException|" +
         "ExceptionInInitializerError|IllegalAccessError|" +

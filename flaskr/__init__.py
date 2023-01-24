@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, redirect, render_template
 from .config import Config
 
 
@@ -8,11 +8,7 @@ def create_app(test_config=None):
     app.config.from_object(Config)
 
     from .src import editor
-    from .src import button
-    from .src import scode
-    app.register_blueprint(editor)
-    app.register_blueprint(button)
-    app.register_blueprint(scode)   
+    app.register_blueprint(editor)  
 
     @app.route("/about", methods = ['GET'])
     def setCode():
@@ -20,7 +16,7 @@ def create_app(test_config=None):
 
     @app.route('/')
     def home():
-        return 'Home Page Route'  
+        return redirect("/editor/index", code=302)
 
     @app.errorhandler(404)
     def invalid_route(e): 

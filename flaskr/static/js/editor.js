@@ -33,7 +33,7 @@ $("button#run").click(function () {
     $.post("run",
         {
             code: code,
-            user_id: getUniqueUserId()
+            unique_user_id: getUniqueUserId()
         },
         function (data, status) {
             $("textarea#output").append(data.response);
@@ -68,7 +68,40 @@ $("button#clear").click(function () {
 });
 
 $("button#upload").click(function () {
-    
+    var form = $("<form method='post'></form>");
+    var input_file = $("<input id='file1' name='file 'type='file' accept='*'>");
+    var url = 'upload';
+    form.attr({"action": url, "enctype":"multipart/form-data"});
+    form.append(input_file);
+    input_file.change(function(e){
+        var fileMsg = e.currentTarget.files;
+        // var fileName = fileMsg[0].name;
+        var fileSize = fileMsg[0].size;
+        // Let sever to check
+        // var fileType = fileMsg[0].type;
+        // var type = (fileType.substr(fileType.lastIndexOf("."))).toLowerCase();
+        if(fileSize > 10240) {
+            alert("The file size should be less than 10KB.");
+            return false;
+        }
+
+        var formData = new FormData();
+        formData.append("file", fileMsg[0]);
+        $.ajax({
+            url: 'upload',
+            type: 'POST',
+            async: false,
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if(data.response) alert(data.response);
+                if(data.code)  editor.setValue(data.code, -1);
+            }
+        });
+      })
+    input_file.click();
 });
 
 // load examples
