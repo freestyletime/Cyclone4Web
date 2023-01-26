@@ -8,6 +8,30 @@ editor.setOptions({
     enableSnippets: true
 });
 
+// set mode
+var JavaMode = ace.require("ace/mode/java").Mode;
+editor.session.setMode(new JavaMode());
+
+// shortcut - run
+editor.commands.addCommand({
+    name: 'run-script',
+    bindKey: {win: 'Ctrl-R',  mac: 'Command-R'},
+    exec: function(editor) {
+        $("button#run").click();
+    },
+    readOnly: true
+});
+
+// shortcut - upload
+editor.commands.addCommand({
+    name: 'save-script',
+    bindKey: {win: 'Ctrl-U',  mac: 'Command-U'},
+    exec: function(editor) {
+        $("button#upload").click();
+    },
+    readOnly: true
+});
+
 // set theme
 var themelist = ace.require("ace/ext/themelist");
 for(let item of themelist.themes.values()) {
@@ -22,9 +46,19 @@ $("ul#theme").css({
     'overflow-y':'scroll'
 });
 
-// set mode
-var JavaMode = ace.require("ace/mode/java").Mode;
-editor.session.setMode(new JavaMode());
+// $("div#editor").resize(function () {
+//     console.log("gaibian");
+// });
+var resizeTimer = null;
+const resizeObserver = new ResizeObserver((e) => {
+    if(resizeTimer){
+        clearTimeout(resizeTimer);
+    }
+    resizeTimer = setTimeout(function(){
+        editor.resize();
+    },500)
+});
+resizeObserver.observe(document.querySelector('#editor'));
 
 // set run click event
 $("button#run").click(function () {
@@ -57,7 +91,7 @@ $("button#save").click(function () {
                 link.click();
             }
         } else {
-            //TODO
+            alert("Failed to save the file.");
         }
     });
 });
