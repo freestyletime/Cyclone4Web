@@ -52,6 +52,19 @@ h3.text-muted a:hover { text-decoration: none; color: #0088cc; }
     outline-style: groove;
 }
 
+#counter {
+    border: 1px solid;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+} 
+
+#count-value {
+    margin-left: 8px;
+    font-weight: bold;
+  }
+
 #editor {
     position: relative;
     width: 100%;
@@ -65,4 +78,8 @@ h3.text-muted a:hover { text-decoration: none; color: #0088cc; }
     margin-top: 3pt;
     outline-width: 1pt;
     outline-style: double;
+}
+
+#info {
+    border-style: dotted;
 }
