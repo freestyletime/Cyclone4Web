@@ -64,8 +64,8 @@ resizeObserver.observe(document.querySelector('#editor'));
 
 // set run click event
 $("button#run").click(function () {
-    $("textarea#output").empty();
     var code = editor.getValue();
+    $(".notifyjs-foo-base .yes").trigger('notify-hide');
     $.post("run",
         {
             code: code,
@@ -73,7 +73,45 @@ $("button#run").click(function () {
         },
         function (data, status) {
             if (status == 'success') {
-                $("textarea#output").append(data.response);
+                var text = data.response;
+                var pattern = /<a\s+[^>]*href\s*=\s*(["'])([^"']+)\1[^>]*>(.*?)<\/a>/g;
+                var match = pattern.exec(text);
+
+                if (match != null) {
+                    var updatedText = text.replace(pattern, function (tag) {
+                        return ' Trace download link is below';
+                    });
+                    $('textarea#output').val(updatedText);
+                    var aTag = match[0];
+                    var title = $("<h4/>").append(aTag);
+
+                    //add a new style 'foo'
+                    $.notify.addStyle('foo', {
+                        html:
+                            "<div>" +
+                            "<div class='clearfix'>" +
+                            "<div class='title' data-notify-html='title'/>" +
+                            "<div class='buttons'>" +
+                            "<button class='yes' data-notify-text='button'></button>" +
+                            "</div>" +
+                            "</div>" +
+                            "</div>"
+                    });
+
+                    $(document).on('click', '.notifyjs-foo-base .yes', function () {
+                        //hide notification
+                        $(this).trigger('notify-hide');
+                    });
+
+                    $("textarea#output").notify({
+                        title: title,
+                        button: 'dismiss'
+                    }, {
+                        style: 'foo',
+                        autoHide: false,
+                        clickToHide: false
+                    });
+                } else $("textarea#output").val(text);
             } else {
                 alert("Failed to run the code.");
             }
@@ -83,7 +121,7 @@ $("button#run").click(function () {
 // set save click event
 $("button#save").click(function () {
     var code = editor.getValue();
-    $.post("files", {
+    $.post("save2LocalFile", {
         code: code,
     }, function (data, status, xhr) {
         if (status == 'success') {
@@ -158,7 +196,13 @@ function insertInStart(content) {
 $("button#trace").click(function () {
     const opt = 'option-trace=true;';
     var code = editor.getValue();
-    if (!code.includes(opt) && (code.includes(container1) || code.includes(container2))) insertInStart(opt);
+    if (code.includes(opt)) {
+        var r = editor.find(opt);
+        editor.moveCursorTo(r.start.row, 0);
+        editor.removeLines();
+    } else {
+        if (code.includes(container1) || code.includes(container2)) insertInStart(opt);
+    }
 });
 
 // set timeout
@@ -178,11 +222,11 @@ $("button#increment").click(function () {
     insertInStart(timeout + count + ";");
 });
 $("button#decrement").click(function () {
+    clearTimeoutText();
     if (count > 0) {
         count--;
         $("span#count-value").text(count);
-        clearTimeoutText();
-        if(count > 0) insertInStart(timeout + count + ";");
+        if (count > 0) insertInStart(timeout + count + ";");
     }
 });
 

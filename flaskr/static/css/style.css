@@ -2,8 +2,6 @@
 @import url(http://fonts.googleapis.com/css?family=Montserrat);
 
 body { 
-    padding-top: 15px; 
-    padding-bottom: 15px; 
     font-family: 'Merriweather', Georgia, Times; 
     font-size: 18px; 
     background-color: blanchedalmond;
@@ -19,6 +17,31 @@ blockquote p { font-size: 16px; line-height: 1.6em; }
 /* Navigation */
 h3.text-muted a {text-decoration: none; color: #999999; }
 h3.text-muted a:hover { text-decoration: none; color: #0088cc; }
+
+.notifyjs-foo-base {
+    opacity: 0.85;
+    width: 250px;
+    background: #29e68d;
+    border-radius: 10px;
+}
+  
+.notifyjs-foo-base .title {
+    width: 200px;
+    margin: 10px;
+}
+  
+.notifyjs-foo-base .buttons {
+    width: 70px;
+    float: right;
+    margin: 2px;
+}
+  
+.notifyjs-foo-base button {
+    font-size: 9px;
+    margin: 2px;
+    width: 60px;
+    font-size: 12px;
+}
 
 .logo {
     width: 45px;

@@ -19,7 +19,7 @@ def create_app(test_config=None):
         return redirect("/editor/index", code=302)
 
     @app.errorhandler(404)
-    def invalid_route(e): 
-        return render_template('404.html')
+    def page_not_found(e):
+        return render_template("404.html")
 
     return app

@@ -1,6 +1,6 @@
-import os, subprocess, sys, time
+import os, subprocess, sys, time, re
 from ..config import const
-from flask import Blueprint, request, render_template, jsonify, make_response, send_file, redirect
+from flask import Blueprint, request, render_template, jsonify, make_response, send_file, abort
 from werkzeug.utils import secure_filename
 from pathlib import Path
 
@@ -46,8 +46,27 @@ def runCode():
     Path(path).write_text(code)
     result = subprocess.Popen(["./ex.sh", const.PATH_PROJECT, path], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     stdout, stderr = result.communicate()
-    return jsonify({"response": stdout.decode(sys.getdefaultencoding())})
 
+    symbol = "Trace Generated"
+    res = stdout.decode(sys.getdefaultencoding())
+    if symbol not in res:
+        return jsonify({"response": res})
+    else:
+        for line in res.splitlines():
+            if symbol in line:
+                path = line.split(":")[1]
+                new = res.replace(path, "<a href='/editor/file?path=" + path + "'>Trace file download</a>")
+                return jsonify({"response": new})
+        
+
+@editor.route("/file")
+def send_trace_file():
+    id = request.cookies.get(const.FIELD_USER_ID)
+    file = request.args.get("path")
+    if id and file:
+        try: return send_file(file, as_attachment=False)
+        except Exception as e:
+            abort(404)
 
 @editor.route('/upload', methods = ['POST'])
 def upload():
@@ -70,7 +89,7 @@ def upload():
     else:
         return jsonify({"response": "Fail to upload!"})
 
-@editor.route('/files', methods = ['POST'])
+@editor.route('/save2LocalFile', methods = ['POST'])
 def downLoadFile():
     code = request.form.get('code')
     id = request.cookies.get(const.FIELD_USER_ID)

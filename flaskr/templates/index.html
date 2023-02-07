@@ -31,7 +31,7 @@
 				</div>
 				<!-- Trace button -->
 				<div class="btn-group mr-2" role="group" aria-label="group5">
-					<button id="trace" type="button" class="btn btn-inverse btn-lg">Trace</button>
+					<button id="trace" type="button" class="btn btn-primary btn-lg">Trace</button>
 				</div>
 				<!-- Timeout button -->
 				<div id="counter" class="btn-group mr-2" role="group" aria-label="group6">
@@ -61,9 +61,10 @@
 		<!-- code editor -->
 		<div id="editor" class="col-auto">{{ code }}</div>
 		<div id="result" class="col-auto">
-			<textarea id="output" placeholder="Runing result……" readonly="true" class="form-control"
-				rows="6"></textarea>
+			<textarea id="output" placeholder="Runing result……" readonly="true" class="form-control" rows="6"></textarea>
 		</div>
+
+		
 	</div>
 </div>
 {% endblock %}
@@ -74,5 +75,6 @@
 <script src="{{ url_for('static', filename= 'js/ace/mode-java.js') }}" type="text/javascript" charset="utf-8"></script>
 <script src="{{ url_for('static', filename= 'js/ace/ext-themelist.js') }}" type="text/javascript" charset="utf-8"></script>
 <script src="{{ url_for('static', filename= 'js/ace/ext-language_tools.js') }}" type="text/javascript" charset="utf-8"></script>
+<script src="{{ url_for('static', filename= 'js/notify.min.js') }}" type="text/javascript" charset="utf-8"></script>
 <script src="{{ url_for('static', filename= 'js/editor.js') }}" type="text/javascript" charset="utf-8"></script>
 {% endblock %}
