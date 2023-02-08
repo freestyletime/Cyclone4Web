@@ -1,17 +1,14 @@
-import os, subprocess, sys, time, re
-from ..config import const
+import os, subprocess, sys, time, uuid
 from flask import Blueprint, request, render_template, jsonify, make_response, send_file, abort
 from werkzeug.utils import secure_filename
+from ..config import const
 from pathlib import Path
+
 
 # = = = = = = = = = = = = = = = = = =
 ### Native methods
-def current_timestamp():
-    return str(round(time.time() * 1000))
-
 def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1] in const.ALLOWED_EXTENSIONS
+    return '.' in filename and filename.rsplit('.', 1)[1] in const.ALLOWED_EXTENSIONS
 # = = = = = = = = = = = = = = = = = =
 
 
@@ -30,7 +27,7 @@ def setCode():
     
     code = Path(const.PATH_TMP_STORAGE + os.sep + const.DEFAULT_FILE_NAME).read_text()
     res = make_response(render_template('index.html', code=code))
-    res.set_cookie(const.FIELD_USER_ID, current_timestamp())
+    res.set_cookie(const.FIELD_USER_ID, const.BRAND_PREFIX + str(uuid.uuid4()))
     return res
 
 
@@ -67,6 +64,8 @@ def send_trace_file():
         try: return send_file(file, as_attachment=False)
         except Exception as e:
             abort(404)
+    abort(404)
+
 
 @editor.route('/upload', methods = ['POST'])
 def upload():
@@ -88,6 +87,7 @@ def upload():
         return jsonify({"code": code})
     else:
         return jsonify({"response": "Fail to upload!"})
+
 
 @editor.route('/save2LocalFile', methods = ['POST'])
 def downLoadFile():

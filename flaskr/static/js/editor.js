@@ -215,6 +215,7 @@ function clearTimeoutText() {
         editor.removeLines();
     }
 }
+
 $("button#increment").click(function () {
     count++;
     $("span#count-value").text(count);

@@ -19,6 +19,7 @@ const = Constants()
 const.ALLOWED_EXTENSIONS = set(['txt', 'cyclone'])
 const.MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB
 # constant keys & values
+const.BRAND_PREFIX = "CYCLONE4WEB-USER-";
 const.FIELD_USER_ID = "unique_user_id"
 const.DEFAULT_FILE_NAME = 'Main.cyclone'
 
