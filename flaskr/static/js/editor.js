@@ -168,7 +168,7 @@ $("button#upload").click(function () {
         var formData = new FormData();
         formData.append("file", fileMsg[0]);
         $.ajax({
-            url: 'upload',
+            url: url,
             type: 'POST',
             async: false,
             data: formData,
