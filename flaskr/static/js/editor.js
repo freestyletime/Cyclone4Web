@@ -79,13 +79,16 @@ function http_post(url, paras, func, contentType='application/x-www-form-urlenco
             } else  func(data, status, xhr);
         },
         error: function (xhr, status, error) {
-            alert("Request failed. Please hold for a second.")
+            if(error == 'timeout') {
+                alert("Request timeout. Please adjust the timeout option and try it again.");
+            }else alert("Request failed. Please hold for a second.");
         }
     });
 }
 // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 // set run click event
 $("button#run").click(function () {
+    $('textarea#output').val("");
     var code = editor.getValue();
     $(".notifyjs-foo-base .yes").trigger('notify-hide');
     http_post("run", { code: code}, function(text){

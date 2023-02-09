@@ -34,8 +34,12 @@ def _check_user_id():
     id = request.cookies.get(const.FIELD_USER_ID)
     return True if id else False
 
-
-
+def _check_path():
+    parent = const.PATH_TMP_STORAGE + os.sep + request.cookies.get(const.FIELD_USER_ID)
+    path = parent + os.sep + const.DEFAULT_FILE_NAME
+    if not Path(parent).exists(): Path(parent).mkdir()
+    if not Path(path).exists(): Path(path).touch()
+    return path
 # = = = = = = = = = = = = = = = = = =
 
 
@@ -44,7 +48,7 @@ editor = Blueprint("editor", __name__, url_prefix="/editor")
 
 
 @editor.route("/index", methods = ['GET'])
-def setCode():
+def initial():
     """
     Main page for users
     ---
@@ -95,10 +99,7 @@ def runCode():
     if not _check_user_id(): return _response_(False, const.ERROR_USER_ID, code=const.CODE_USER_ID)
     code = request.form.get(const.FIELD_USER_CODE)
     if code and id:
-        parent = const.PATH_TMP_STORAGE + os.sep + request.cookies.get(const.FIELD_USER_ID)
-        path = parent + os.sep + const.DEFAULT_FILE_NAME
-        if not Path(parent).exists(): Path(parent).mkdir()
-        if not Path(path).exists(): Path(path).touch()
+        path = _check_path()
         Path(path).write_text(code)
         result = subprocess.Popen([const.SPT_EX, const.PATH_PROJECT, path], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         stdout, stderr = result.communicate()
@@ -180,10 +181,12 @@ def upload():
     if file.filename == '': 
         return _response_(False, const.ERROR_FILE_NAME_ETY, code=const.CODE_FILE_NAME_ETY)
     if file and _allowed_file(file.filename):
+        path_org = _check_path()
         path = os.path.join(const.PATH_TMP_STORAGE + os.sep + request.cookies.get(const.FIELD_USER_ID), secure_filename(file.filename))
         file.save(path)
         code = Path(path).read_text()
         os.remove(path)
+        Path(path_org).write_text(code)
         return _response_(True, const.SUCCESS_REQ_UPDATE, data=code)
     else:
         return _response_(False, const.ERROR_FILE_UPDATE, code=const.CODE_FILE_UPDATE)
@@ -212,10 +215,7 @@ def downLoadFile():
  
     code = request.form.get(const.FIELD_USER_CODE)
     if code:
-        parent = const.PATH_TMP_STORAGE + os.sep + request.cookies.get(const.FIELD_USER_ID)
-        path = parent + os.sep + const.DEFAULT_FILE_NAME
-        if not Path(parent).exists(): Path(parent).mkdir()
-        if not Path(path).exists(): Path(path).touch()
+        path = _check_path()
         Path(path).write_text(code)
         return send_file(path, download_name=const.DEFAULT_FILE_NAME, as_attachment=True)
     else:  return _response_(False, const.ERROR_CODE_ETY, code=const.CODE_CODE_ETY)

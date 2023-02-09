@@ -12,7 +12,7 @@ instance/
 .coverage
 .DS_Store
 htmlcov/
-cyclone/
+Cyclone/
 
 dist/
 build/
