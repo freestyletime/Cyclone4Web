@@ -13,7 +13,7 @@ def _response_(status, msg, code='', data=''):
     ---
     description: 
     
-    1.Bool status : True -> success / False -> failure
+    1.Bool status : 0 -> success / 1 -> failure
     2.String msg : error message
     3.Data : fetching data when success
     4.String code : error code when fail (start with 'CE')
@@ -60,8 +60,8 @@ def setCode():
         description: successfully show the webpage 'index.html'
     """
 
-    if not _check_user_id():
-        parent = const.PATH_TMP_STORAGE + os.sep + id
+    if _check_user_id():
+        parent = const.PATH_TMP_STORAGE + os.sep + request.cookies.get(const.FIELD_USER_ID)
         if Path(parent).exists():
             code = Path(parent + os.sep + const.DEFAULT_FILE_NAME).read_text()
             return render_template(const.HTML_INDEX, code=code)
@@ -94,7 +94,7 @@ def runCode():
 
     if not _check_user_id(): return _response_(False, const.ERROR_USER_ID, code=const.CODE_USER_ID)
     code = request.form.get(const.FIELD_USER_CODE)
-    if code:
+    if code and id:
         parent = const.PATH_TMP_STORAGE + os.sep + request.cookies.get(const.FIELD_USER_ID)
         path = parent + os.sep + const.DEFAULT_FILE_NAME
         if not Path(parent).exists(): Path(parent).mkdir()
@@ -102,7 +102,7 @@ def runCode():
         Path(path).write_text(code)
         result = subprocess.Popen([const.SPT_EX, const.PATH_PROJECT, path], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         stdout, stderr = result.communicate()
-
+        
         symbol = "Trace Generated"
         res = stdout.decode(sys.getdefaultencoding())
         if symbol not in res:
@@ -114,11 +114,13 @@ def runCode():
                     kv = line.split(":")
                     if len(kv) < 2:
                         return _response_(False, const.ERROR_CYC_TRACE_RETURN, code=const.CODE_CYC_TRACE_RETURN)
-                    else: return _response_(True, const.SUCCESS_REQ, data=res.replace(path, "<a href='/editor/file?path=" + kv[1] + "'>Trace file download</a>"))
+                    else:
+                        print(kv[1])
+                        return _response_(True, const.SUCCESS_REQ, data=res.replace(kv[1], "<a href='/editor/file?path=" + kv[1] + "'>Trace file download</a>"))
     else: return _response_(False, const.ERROR_CODE_ETY, code=const.CODE_CODE_ETY)
         
 
-@editor.route("/file")
+@editor.route("/file", methods = ['GET'])
 def send_trace_file():
     """
     Send trace file to users
@@ -177,15 +179,14 @@ def upload():
     # If the user does not select a file, the browser submits an empty file without a filename.
     if file.filename == '': 
         return _response_(False, const.ERROR_FILE_NAME_ETY, code=const.CODE_FILE_NAME_ETY)
-    if file and allowed_file(file.filename):
+    if file and _allowed_file(file.filename):
         path = os.path.join(const.PATH_TMP_STORAGE + os.sep + request.cookies.get(const.FIELD_USER_ID), secure_filename(file.filename))
         file.save(path)
         code = Path(path).read_text()
         os.remove(path)
-        return _response_(True, const.SUCCESS_REQ, data=code)
+        return _response_(True, const.SUCCESS_REQ_UPDATE, data=code)
     else:
         return _response_(False, const.ERROR_FILE_UPDATE, code=const.CODE_FILE_UPDATE)
-
 
 @editor.route('/save2LocalFile', methods = ['POST'])
 def downLoadFile():
@@ -206,10 +207,10 @@ def downLoadFile():
       200:
         description: successfully Download the local code
     """
-    
+
     if not _check_user_id(): return _response_(False, const.ERROR_USER_ID, code=const.CODE_USER_ID)
  
-    code = request.form.get('code')
+    code = request.form.get(const.FIELD_USER_CODE)
     if code:
         parent = const.PATH_TMP_STORAGE + os.sep + request.cookies.get(const.FIELD_USER_ID)
         path = parent + os.sep + const.DEFAULT_FILE_NAME
@@ -223,13 +224,21 @@ def downLoadFile():
 @editor.route("/examples", methods = ['POST'])
 def getExamplesList():
     """
-    This function adds two numbers and returns the result.
-    
-    :param a: The first number to add.
-    :param b: The second number to add.
-    :return: The sum of the two numbers.
+    Show examples from the Cyclone folder
+    ---
+    description: Show every example from the Cyclone folder in light of its structure
+    parameters:
+      - name: id
+        type: string
+        required: true
+        description: every new user will have an unique id or retrieve the previous id stored in the cookie
+    responses:
+      200:
+        description: successfully return the structure of examples
     """
-
+    
+    if not _check_user_id(): return _response_(False, const.ERROR_USER_ID, code=const.CODE_USER_ID)
+ 
     structure = {}
     if Path(const.PATH_EXAMPLE).exists():
         for path, dirs, files in os.walk(const.PATH_EXAMPLE):
@@ -238,21 +247,39 @@ def getExamplesList():
                 if s_folder and len(files) > 0:
                     structure[s_folder] = files
                     structure[s_folder].sort()
-    return jsonify({"examples": structure})
+    return _response_(True, const.SUCCESS_REQ, data=structure)
 
 
 @editor.route("/example", methods = ['POST'])
 def getExample():
     """
-    This function adds two numbers and returns the result.
-    
-    :param a: The first number to add.
-    :param b: The second number to add.
-    :return: The sum of the two numbers.
+    Get the code from a example in the Cyclone folder
+    ---
+    description: Read the code from a specific example
+    parameters:
+      - name: id
+        type: string
+        required: true
+        description: every new user will have an unique id or retrieve the previous id stored in the cookie
+      - name: file
+        type: string
+        required: true
+        description: the file name
+      - name: folder
+        type: string
+        required: true
+        description: the folder name
+    responses:
+      200:
+        description: successfully return the code from a example in the Cyclone folder
     """
+    
+    if not _check_user_id(): return _response_(False, const.ERROR_USER_ID, code=const.CODE_USER_ID)
 
-    folder = request.form.get('folder')
-    name = request.form.get('name')
+    file = request.form.get(const.FIELD_FILE)
+    folder = request.form.get(const.FIELD_FOLDER)
     # TODO verify the data
-    code = Path(const.PATH_EXAMPLE + os.sep + folder + os.sep + name).read_text()
-    return jsonify({"code": code})
+    if file and folder:
+        code = Path(const.PATH_EXAMPLE + os.sep + folder + os.sep + file).read_text()
+        return _response_(True, const.SUCCESS_REQ, data=code)
+    else: return _response_(False, const.ERROR_FILE_NOT_EXIST, code=CODE_FILE_NOT_EXIST)

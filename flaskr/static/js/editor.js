@@ -62,81 +62,84 @@ const resizeObserver = new ResizeObserver((e) => {
 });
 resizeObserver.observe(document.querySelector('#editor'));
 
+// -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+// - - Common methods
+function http_post(url, paras, func, contentType='application/x-www-form-urlencoded; charset=UTF-8', processData=true) {
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: paras,
+        contentType: contentType,
+        processData: processData,
+        timeout: count > 0 ? count * 1000 : 5000,
+        success: function (data, status, xhr) {
+            if(data.status != null){
+                if (data.status == 1) alert("Request failed: " + data.msg + " | Error code: " + data.code);
+                else func(data.data);
+            } else  func(data, status, xhr);
+        },
+        error: function (xhr, status, error) {
+            alert("Request failed. Please hold for a second.")
+        }
+    });
+}
+// -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 // set run click event
 $("button#run").click(function () {
     var code = editor.getValue();
     $(".notifyjs-foo-base .yes").trigger('notify-hide');
-    $.post("run",
-        {
-            code: code,
-            unique_user_id: getUniqueUserId()
-        },
-        function (data, status) {
-            if (status == 'success') {
-                var text = data.response;
-                var pattern = /<a\s+[^>]*href\s*=\s*(["'])([^"']+)\1[^>]*>(.*?)<\/a>/g;
-                var match = pattern.exec(text);
-
-                if (match != null) {
-                    var updatedText = text.replace(pattern, function (tag) {
-                        return ' Trace download link is below';
-                    });
-                    $('textarea#output').val(updatedText);
-                    var aTag = match[0];
-                    var title = $("<h4/>").append(aTag);
-
-                    //add a new style 'foo'
-                    $.notify.addStyle('foo', {
-                        html:
-                            "<div>" +
-                            "<div class='clearfix'>" +
-                            "<div class='title' data-notify-html='title'/>" +
-                            "<div class='buttons'>" +
-                            "<button class='yes' data-notify-text='button'></button>" +
-                            "</div>" +
-                            "</div>" +
-                            "</div>"
-                    });
-
-                    $(document).on('click', '.notifyjs-foo-base .yes', function () {
-                        //hide notification
-                        $(this).trigger('notify-hide');
-                    });
-
-                    $("textarea#output").notify({
-                        title: title,
-                        button: 'dismiss'
-                    }, {
-                        style: 'foo',
-                        autoHide: false,
-                        clickToHide: false
-                    });
-                } else $("textarea#output").val(text);
-            } else {
-                alert("Failed to run the code.");
-            }
-        });
+    http_post("run", { code: code}, function(text){
+        var pattern = /<a\s+[^>]*>(.*?)<\/a>/g;
+        var match = text.match(pattern);
+        if (match != null) {
+            var updatedText = text.replace(pattern, function (tag) {
+                return ' Trace download link is below';
+            });
+            $('textarea#output').val(updatedText);
+            var title = $("<h4/>").append(match[0]);
+            //add a new style 'foo'
+            $.notify.addStyle('foo', {
+                html:
+                    "<div>" +
+                    "<div class='clearfix'>" +
+                    "<div class='title' data-notify-html='title'/>" +
+                    "<div class='buttons'>" +
+                    "<button class='yes' data-notify-text='button'></button>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+            });
+    
+            $(document).on('click', '.notifyjs-foo-base .yes', function () {
+                //hide notification
+                $(this).trigger('notify-hide');
+            });
+    
+            $("textarea#output").notify({
+                title: title,
+                button: 'dismiss'
+            }, {
+                style: 'foo',
+                autoHide: false,
+                clickToHide: false
+            });
+        } else $("textarea#output").val(text);
+    });
 });
 
 // set save click event
 $("button#save").click(function () {
     var code = editor.getValue();
-    $.post("save2LocalFile", {
-        code: code,
-    }, function (data, status, xhr) {
-        if (status == 'success') {
-            var header = xhr.getResponseHeader('Content-Disposition');
-            if (header && header.indexOf('attachment') !== -1) {
-                const parts = header.split(';');
-                const link = document.createElement('a');
-                link.style.display = 'none';
-                link.download = parts[1].split('=')[1];
-                var blob = new Blob([data], { type: 'text/plain' });
-                link.href = window.URL.createObjectURL(blob);
-                link.click();
-            }
-        } else {
-            alert("Failed to save the file.");
+    http_post("save2LocalFile", { code: code }, function(data, status, xhr) {
+        var header = xhr.getResponseHeader('Content-Disposition');
+        if (header && header.indexOf('attachment') !== -1) {
+            const parts = header.split(';');
+            const link = document.createElement('a');
+            link.style.display = 'none';
+            link.download = parts[1].split('=')[1];
+            var blob = new Blob([data], { type: 'text/plain' });
+            link.href = window.URL.createObjectURL(blob);
+            link.click();
         }
     });
 });
@@ -167,19 +170,9 @@ $("button#upload").click(function () {
 
         var formData = new FormData();
         formData.append("file", fileMsg[0]);
-        $.ajax({
-            url: url,
-            type: 'POST',
-            async: false,
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                if (data.response) alert(data.response);
-                if (data.code) editor.setValue(data.code, -1);
-            }
-        });
+        http_post(url, formData, function(data) {
+            if (data) editor.setValue(data, -1);
+        }, false, false);
     })
     input_file.click();
 });
@@ -222,6 +215,7 @@ $("button#increment").click(function () {
     clearTimeoutText();
     insertInStart(timeout + count + ";");
 });
+
 $("button#decrement").click(function () {
     clearTimeoutText();
     if (count > 0) {
@@ -232,33 +226,20 @@ $("button#decrement").click(function () {
 });
 
 // load examples in the cyclone folder
-$.post("examples", {},
-    function (data, status) {
-        if (status == 'success') {
-            var ems = data.examples;
-            for (var k in ems) {
-                $("ul#examples_list").append("<li class='nav-header'>" + k + "</li>");
-                for (var n in ems[k]) {
-                    $("ul#examples_list").append("<li><a id=" + k + ">" + ems[k][n] + "</a></li>");
-                }
-                $("a#" + k).click(function () {
-                    getExample(this.id, this.text);
-                });
-            }
-        } else {
-            alert("Failed to get the examples.");
+http_post("examples", {}, function(data) {
+    for (var k in data) {
+        $("ul#examples_list").append("<li class='nav-header'>" + k + "</li>");
+        for (var n in data[k]) {
+            $("ul#examples_list").append("<li><a id=" + k + ">" + data[k][n] + "</a></li>");
         }
-    });
+        $("a#" + k).click(function () {
+            getExample(this.id, this.text);
+        });
+    }
+});
 
 function getExample(folder, file) {
-    $.post("example", {
-        folder: folder,
-        name: file
-    }, function (data, status) {
-        if (status == 'success') {
-            editor.setValue(data.code, -1);
-        } else {
-            alert("Failed to get the code.");
-        }
+    http_post("example", { folder: folder, file: file }, function(data) {
+        editor.setValue(data, -1);
     });
 }

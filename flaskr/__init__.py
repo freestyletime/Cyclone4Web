@@ -11,7 +11,7 @@ def create_app(test_config=None):
     app.register_blueprint(editor)  
 
     @app.route("/about", methods = ['GET'])
-    def setCode():
+    def about():
         """
         Introduce the author and the techs of the website
         ---
@@ -39,7 +39,7 @@ def create_app(test_config=None):
         return redirect("/editor/index", code=302)
 
     @app.errorhandler(403)
-    def page_not_found(e):
+    def page_403(e):
         """
         403 webpage
         ---
@@ -53,7 +53,7 @@ def create_app(test_config=None):
         return render_template(const.HTML_ERROR, code=403, des=const.DES_HTTP_CODE_403)
 
     @app.errorhandler(404)
-    def page_not_found(e):
+    def page_404(e):
         """
         404 webpage
         ---

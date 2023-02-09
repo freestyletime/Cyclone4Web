@@ -34,9 +34,11 @@ const.PATH_TMP_STORAGE = const.PATH_PROJECT + os.sep + 'tmp'
 const.FIELD_USER_ID = "unique_user_id"
 const.FIELD_USER_CODE = "code"
 const.FIELD_FILE = "file"
+const.FIELD_FOLDER = "folder"
 const.FIELD_FILE_PATH = "path"
 
 const.SUCCESS_REQ = "Request successully!"
+const.SUCCESS_REQ_UPDATE = "Successully upload your file!"
 
 const.ERROR_USER_ID = "Lacking of user id! Try going back to the homepage."
 const.ERROR_CODE_ETY = "The code is empty, please run again!"
