@@ -11,7 +11,7 @@
 		</div>
 	</div>
 	<div class="content col-md-7">
-		<div class="col-auto">
+		<div id="functions" class="col-auto">
 			<div class="toolbar btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 				<!-- run button -->
 				<div class="btn-group mr-2" role="group" aria-label="group1">
@@ -63,8 +63,6 @@
 		<div id="result" class="col-auto">
 			<textarea id="output" placeholder="Runing result……" readonly="true" class="form-control" rows="6"></textarea>
 		</div>
-
-		
 	</div>
 </div>
 {% endblock %}
@@ -75,6 +73,5 @@
 <script src="{{ url_for('static', filename= 'js/ace/mode-java.js') }}" type="text/javascript" charset="utf-8"></script>
 <script src="{{ url_for('static', filename= 'js/ace/ext-themelist.js') }}" type="text/javascript" charset="utf-8"></script>
 <script src="{{ url_for('static', filename= 'js/ace/ext-language_tools.js') }}" type="text/javascript" charset="utf-8"></script>
-<script src="{{ url_for('static', filename= 'js/notify.min.js') }}" type="text/javascript" charset="utf-8"></script>
 <script src="{{ url_for('static', filename= 'js/editor.js') }}" type="text/javascript" charset="utf-8"></script>
 {% endblock %}

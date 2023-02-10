@@ -65,13 +65,17 @@ resizeObserver.observe(document.querySelector('#editor'));
 // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 // - - Common methods
 function http_post(url, paras, func, contentType='application/x-www-form-urlencoded; charset=UTF-8', processData=true) {
-    $.ajax({
+    
+    var res = $.ajax({
         type: "POST",
         url: url,
         data: paras,
         contentType: contentType,
         processData: processData,
         timeout: count > 0 ? count * 1000 : 5000,
+        beforeSend: function (xhr, settings){
+            $('body').loading();
+        },
         success: function (data, status, xhr) {
             if(data.status != null){
                 if (data.status == 1) alert("Request failed: " + data.msg + " | Error code: " + data.code);
@@ -79,10 +83,15 @@ function http_post(url, paras, func, contentType='application/x-www-form-urlenco
             } else  func(data, status, xhr);
         },
         error: function (xhr, status, error) {
+            
             if(error == 'timeout') {
                 alert("Request timeout. Please adjust the timeout option and try it again.");
             }else alert("Request failed. Please hold for a second.");
         }
+    });
+    
+    res.done(function( msg ) {
+        $('body').loading('stop');
     });
 }
 // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
