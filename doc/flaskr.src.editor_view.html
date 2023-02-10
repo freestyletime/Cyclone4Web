@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module flaskr.src.editor_view</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="flaskr.html"><font color="#ffffff">flaskr</font></a>.<a href="flaskr.src.html"><font color="#ffffff">src</font></a>.editor_view</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/chenchristian/Development/PycharmProjects/Cyclone4Web/flaskr/src/editor_view.py">/Users/chenchristian/Development/PycharmProjects/Cyclone4Web/flaskr/src/editor_view.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="subprocess.html">subprocess</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+<a href="time.html">time</a><br>
+</td><td width="25%" valign=top><a href="uuid.html">uuid</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-downLoadFile"><strong>downLoadFile</strong></a>()</dt><dd><tt>Download&nbsp;the&nbsp;local&nbsp;code<br>
+---<br>
+description:&nbsp;Download&nbsp;the&nbsp;local&nbsp;code<br>
+parameters:<br>
+&nbsp;&nbsp;-&nbsp;name:&nbsp;id<br>
+&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;required:&nbsp;true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;every&nbsp;new&nbsp;user&nbsp;will&nbsp;have&nbsp;an&nbsp;unique&nbsp;id&nbsp;or&nbsp;retrieve&nbsp;the&nbsp;previous&nbsp;id&nbsp;stored&nbsp;in&nbsp;the&nbsp;cookie<br>
+&nbsp;&nbsp;-&nbsp;name:&nbsp;code<br>
+&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;required:&nbsp;true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;the&nbsp;code&nbsp;provided&nbsp;by&nbsp;user's&nbsp;online&nbsp;IDE<br>
+responses:<br>
+&nbsp;&nbsp;200:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;successfully&nbsp;Download&nbsp;the&nbsp;local&nbsp;code</tt></dd></dl>
+ <dl><dt><a name="-getExample"><strong>getExample</strong></a>()</dt><dd><tt>Get&nbsp;the&nbsp;code&nbsp;from&nbsp;a&nbsp;example&nbsp;in&nbsp;the&nbsp;Cyclone&nbsp;folder<br>
+---<br>
+description:&nbsp;Read&nbsp;the&nbsp;code&nbsp;from&nbsp;a&nbsp;specific&nbsp;example<br>
+parameters:<br>
+&nbsp;&nbsp;-&nbsp;name:&nbsp;id<br>
+&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;required:&nbsp;true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;every&nbsp;new&nbsp;user&nbsp;will&nbsp;have&nbsp;an&nbsp;unique&nbsp;id&nbsp;or&nbsp;retrieve&nbsp;the&nbsp;previous&nbsp;id&nbsp;stored&nbsp;in&nbsp;the&nbsp;cookie<br>
+&nbsp;&nbsp;-&nbsp;name:&nbsp;file<br>
+&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;required:&nbsp;true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;the&nbsp;file&nbsp;name<br>
+&nbsp;&nbsp;-&nbsp;name:&nbsp;folder<br>
+&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;required:&nbsp;true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;the&nbsp;folder&nbsp;name<br>
+responses:<br>
+&nbsp;&nbsp;200:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;successfully&nbsp;return&nbsp;the&nbsp;code&nbsp;from&nbsp;a&nbsp;example&nbsp;in&nbsp;the&nbsp;Cyclone&nbsp;folder</tt></dd></dl>
+ <dl><dt><a name="-getExamplesList"><strong>getExamplesList</strong></a>()</dt><dd><tt>Show&nbsp;examples&nbsp;from&nbsp;the&nbsp;Cyclone&nbsp;folder<br>
+---<br>
+description:&nbsp;Show&nbsp;every&nbsp;example&nbsp;from&nbsp;the&nbsp;Cyclone&nbsp;folder&nbsp;in&nbsp;light&nbsp;of&nbsp;its&nbsp;structure<br>
+parameters:<br>
+&nbsp;&nbsp;-&nbsp;name:&nbsp;id<br>
+&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;required:&nbsp;true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;every&nbsp;new&nbsp;user&nbsp;will&nbsp;have&nbsp;an&nbsp;unique&nbsp;id&nbsp;or&nbsp;retrieve&nbsp;the&nbsp;previous&nbsp;id&nbsp;stored&nbsp;in&nbsp;the&nbsp;cookie<br>
+responses:<br>
+&nbsp;&nbsp;200:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;successfully&nbsp;return&nbsp;the&nbsp;structure&nbsp;of&nbsp;examples</tt></dd></dl>
+ <dl><dt><a name="-initial"><strong>initial</strong></a>()</dt><dd><tt>Main&nbsp;page&nbsp;for&nbsp;users<br>
+---<br>
+description:&nbsp;show&nbsp;users&nbsp;an&nbsp;online&nbsp;Cyclone&nbsp;IDE<br>
+parameters:<br>
+&nbsp;&nbsp;-&nbsp;name:&nbsp;id<br>
+&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;required:&nbsp;false<br>
+&nbsp;&nbsp;&nbsp;&nbsp;default:&nbsp;null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;every&nbsp;new&nbsp;user&nbsp;will&nbsp;have&nbsp;an&nbsp;unique&nbsp;id&nbsp;or&nbsp;retrieve&nbsp;the&nbsp;previous&nbsp;id&nbsp;stored&nbsp;in&nbsp;the&nbsp;cookie<br>
+responses:<br>
+&nbsp;&nbsp;200:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;successfully&nbsp;show&nbsp;the&nbsp;webpage&nbsp;'index.html'</tt></dd></dl>
+ <dl><dt><a name="-runCode"><strong>runCode</strong></a>()</dt><dd><tt>Run&nbsp;Cyclone&nbsp;code<br>
+---<br>
+description:&nbsp;runing&nbsp;the&nbsp;code&nbsp;sent&nbsp;by&nbsp;users&nbsp;and&nbsp;return&nbsp;the&nbsp;result<br>
+parameters:<br>
+&nbsp;&nbsp;-&nbsp;name:&nbsp;id<br>
+&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;required:&nbsp;true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;every&nbsp;new&nbsp;user&nbsp;will&nbsp;have&nbsp;an&nbsp;unique&nbsp;id&nbsp;or&nbsp;retrieve&nbsp;the&nbsp;previous&nbsp;id&nbsp;stored&nbsp;in&nbsp;the&nbsp;cookie<br>
+&nbsp;&nbsp;-&nbsp;name:&nbsp;code<br>
+&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;required:&nbsp;true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;the&nbsp;code&nbsp;that&nbsp;user&nbsp;wants&nbsp;to&nbsp;run<br>
+responses:<br>
+&nbsp;&nbsp;200:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;successfully&nbsp;run&nbsp;the&nbsp;Cyclone&nbsp;code&nbsp;or&nbsp;not</tt></dd></dl>
+ <dl><dt><a name="-send_trace_file"><strong>send_trace_file</strong></a>()</dt><dd><tt>Send&nbsp;trace&nbsp;file&nbsp;to&nbsp;users<br>
+---<br>
+description:&nbsp;send&nbsp;trace&nbsp;file&nbsp;to&nbsp;users&nbsp;through&nbsp;the&nbsp;unique&nbsp;file&nbsp;path<br>
+parameters:<br>
+&nbsp;&nbsp;-&nbsp;name:&nbsp;id<br>
+&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;required:&nbsp;true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;every&nbsp;new&nbsp;user&nbsp;will&nbsp;have&nbsp;an&nbsp;unique&nbsp;id&nbsp;or&nbsp;retrieve&nbsp;the&nbsp;previous&nbsp;id&nbsp;stored&nbsp;in&nbsp;the&nbsp;cookie<br>
+&nbsp;&nbsp;-&nbsp;name:&nbsp;file<br>
+&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;required:&nbsp;true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;the&nbsp;absolute&nbsp;trace&nbsp;file&nbsp;path&nbsp;produced&nbsp;by&nbsp;Cyclone<br>
+responses:<br>
+&nbsp;&nbsp;200:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;successfully&nbsp;send&nbsp;the&nbsp;trace&nbsp;file&nbsp;to&nbsp;the&nbsp;user</tt></dd></dl>
+ <dl><dt><a name="-upload"><strong>upload</strong></a>()</dt><dd><tt>User&nbsp;the&nbsp;code&nbsp;from&nbsp;the&nbsp;file&nbsp;to&nbsp;cover&nbsp;with&nbsp;the&nbsp;local&nbsp;code<br>
+---<br>
+description:&nbsp;User&nbsp;the&nbsp;code&nbsp;from&nbsp;the&nbsp;file&nbsp;uploaded&nbsp;by&nbsp;user&nbsp;to&nbsp;replace&nbsp;the&nbsp;local&nbsp;code<br>
+parameters:<br>
+&nbsp;&nbsp;-&nbsp;name:&nbsp;id<br>
+&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;required:&nbsp;true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;every&nbsp;new&nbsp;user&nbsp;will&nbsp;have&nbsp;an&nbsp;unique&nbsp;id&nbsp;or&nbsp;retrieve&nbsp;the&nbsp;previous&nbsp;id&nbsp;stored&nbsp;in&nbsp;the&nbsp;cookie<br>
+&nbsp;&nbsp;-&nbsp;name:&nbsp;file<br>
+&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;file<br>
+&nbsp;&nbsp;&nbsp;&nbsp;required:&nbsp;true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;the&nbsp;file&nbsp;provided&nbsp;by&nbsp;user's&nbsp;device<br>
+responses:<br>
+&nbsp;&nbsp;200:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;successfully&nbsp;replace&nbsp;the&nbsp;local&nbsp;code</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>const</strong> = &lt;flaskr.config.Constants object&gt;<br>
+<strong>editor</strong> = &lt;Blueprint 'editor'&gt;<br>
+<strong>request</strong> = &lt;LocalProxy unbound&gt;</td></tr></table>
+</body></html>

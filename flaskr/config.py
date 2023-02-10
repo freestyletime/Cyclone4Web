@@ -1,12 +1,12 @@
 import os
 
-# It's used for setting web application parameters
 class Config(object):
+    """ It's used for setting web application parameters """
     DEBUG = True
 
 
-# It's used for saving constants
 class Constants(object):
+    """ It's used for maintaining constants """
     def __setattr__(self, name, value):
         if name in self.__dict__:
             raise (self.ConsError, "Can't change const.%s" % name)
@@ -55,4 +55,4 @@ const.CODE_FILE_NAME_ETY = "CE00005";
 const.CODE_FILE_UPDATE = "CE00006";
 
 const.DES_HTTP_CODE_404 = "Hey, sorry, but the page you're trying to access doesn't exist. Try going back to the homepage, or use the navigation menu above to find what you're looking for."
-const.DES_HTTP_CODE_403 = "Unauthorized request. The client does not have access rights to the content."
+const.DES_HTTP_CODE_405 = "This page can not support this way to request. Please try going back to the home page."

@@ -5,6 +5,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardi
 
 app = create_app()
 
+
 # if __name__ == "__main__":
 #     from waitress import serve
 #     serve(app, host="0.0.0.0")

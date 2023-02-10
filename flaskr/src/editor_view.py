@@ -30,12 +30,16 @@ def _response_(status, msg, code='', data=''):
 def _allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in const.ALLOWED_EXTENSIONS
 
-def _check_user_id():
-    id = request.cookies.get(const.FIELD_USER_ID)
-    return True if id else False
+
+def _get_user_id():
+    # Production
+    return request.cookies.get(const.FIELD_USER_ID)
+    # Test
+    # return request.form.get(const.FIELD_USER_ID)
+
 
 def _check_path():
-    parent = const.PATH_TMP_STORAGE + os.sep + request.cookies.get(const.FIELD_USER_ID)
+    parent = const.PATH_TMP_STORAGE + os.sep + _get_user_id()
     path = parent + os.sep + const.DEFAULT_FILE_NAME
     if not Path(parent).exists(): Path(parent).mkdir()
     if not Path(path).exists(): Path(path).touch()
@@ -47,7 +51,7 @@ def _check_path():
 editor = Blueprint("editor", __name__, url_prefix="/editor")
 
 
-@editor.route("/index", methods = ['GET'])
+@editor.route("/", methods = ['GET'])
 def initial():
     """
     Main page for users
@@ -64,8 +68,8 @@ def initial():
         description: successfully show the webpage 'index.html'
     """
 
-    if _check_user_id():
-        parent = const.PATH_TMP_STORAGE + os.sep + request.cookies.get(const.FIELD_USER_ID)
+    if _get_user_id():
+        parent = const.PATH_TMP_STORAGE + os.sep + _get_user_id()
         if Path(parent).exists():
             code = Path(parent + os.sep + const.DEFAULT_FILE_NAME).read_text()
             return render_template(const.HTML_INDEX, code=code)
@@ -96,7 +100,7 @@ def runCode():
         description: successfully run the Cyclone code or not
     """
 
-    if not _check_user_id(): return _response_(False, const.ERROR_USER_ID, code=const.CODE_USER_ID)
+    if not _get_user_id(): return _response_(False, const.ERROR_USER_ID, code=const.CODE_USER_ID)
     code = request.form.get(const.FIELD_USER_CODE)
     if code and id:
         path = _check_path()
@@ -116,7 +120,6 @@ def runCode():
                     if len(kv) < 2:
                         return _response_(False, const.ERROR_CYC_TRACE_RETURN, code=const.CODE_CYC_TRACE_RETURN)
                     else:
-                        print(kv[1])
                         return _response_(True, const.SUCCESS_REQ, data=res.replace(kv[1], "<a href='/editor/file?path=" + kv[1] + "'>Trace file download</a>"))
     else: return _response_(False, const.ERROR_CODE_ETY, code=const.CODE_CODE_ETY)
         
@@ -141,10 +144,10 @@ def send_trace_file():
         description: successfully send the trace file to the user
     """
 
-    if not _check_user_id(): return _response_(False, const.ERROR_USER_ID, code=const.CODE_USER_ID)
+    if not _get_user_id(): return _response_(False, const.ERROR_USER_ID, code=const.CODE_USER_ID)
     path = request.args.get(const.FIELD_FILE_PATH)
     if not path: return _response_(False, const.ERROR_FILE_NOT_EXIST, code=const.CODE_FILE_NOT_EXIST)
-    try:
+    try: 
         return send_file(path, as_attachment=False)
     except Exception as e:
         # check if the trace file is sent successfully
@@ -171,7 +174,7 @@ def upload():
         description: successfully replace the local code
     """
     
-    if not _check_user_id(): return _response_(False, const.ERROR_USER_ID, code=const.CODE_USER_ID)
+    if not _get_user_id(): return _response_(False, const.ERROR_USER_ID, code=const.CODE_USER_ID)
  
     # check if the post request has the file part
     if const.FIELD_FILE in request.files: file = request.files[const.FIELD_FILE]
@@ -182,7 +185,7 @@ def upload():
         return _response_(False, const.ERROR_FILE_NAME_ETY, code=const.CODE_FILE_NAME_ETY)
     if file and _allowed_file(file.filename):
         path_org = _check_path()
-        path = os.path.join(const.PATH_TMP_STORAGE + os.sep + request.cookies.get(const.FIELD_USER_ID), secure_filename(file.filename))
+        path = os.path.join(const.PATH_TMP_STORAGE + os.sep + _get_user_id(), secure_filename(file.filename))
         file.save(path)
         code = Path(path).read_text()
         os.remove(path)
@@ -190,6 +193,7 @@ def upload():
         return _response_(True, const.SUCCESS_REQ_UPDATE, data=code)
     else:
         return _response_(False, const.ERROR_FILE_UPDATE, code=const.CODE_FILE_UPDATE)
+
 
 @editor.route('/save2LocalFile', methods = ['POST'])
 def downLoadFile():
@@ -211,7 +215,7 @@ def downLoadFile():
         description: successfully Download the local code
     """
 
-    if not _check_user_id(): return _response_(False, const.ERROR_USER_ID, code=const.CODE_USER_ID)
+    if not _get_user_id(): return _response_(False, const.ERROR_USER_ID, code=const.CODE_USER_ID)
  
     code = request.form.get(const.FIELD_USER_CODE)
     if code:
@@ -237,7 +241,7 @@ def getExamplesList():
         description: successfully return the structure of examples
     """
     
-    if not _check_user_id(): return _response_(False, const.ERROR_USER_ID, code=const.CODE_USER_ID)
+    if not _get_user_id(): return _response_(False, const.ERROR_USER_ID, code=const.CODE_USER_ID)
  
     structure = {}
     if Path(const.PATH_EXAMPLE).exists():
@@ -274,7 +278,7 @@ def getExample():
         description: successfully return the code from a example in the Cyclone folder
     """
     
-    if not _check_user_id(): return _response_(False, const.ERROR_USER_ID, code=const.CODE_USER_ID)
+    if not _get_user_id(): return _response_(False, const.ERROR_USER_ID, code=const.CODE_USER_ID)
 
     file = request.form.get(const.FIELD_FILE)
     folder = request.form.get(const.FIELD_FOLDER)

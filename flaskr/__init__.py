@@ -24,7 +24,7 @@ def create_app(test_config=None):
 
         return render_template('about.html') 
 
-    @app.route('/')
+    @app.route('/', methods = ['GET'])
     def home():
         """
         Homepage
@@ -36,21 +36,7 @@ def create_app(test_config=None):
             description: successfully redirect to the webpage 'index.html'
         """
 
-        return redirect("/editor/index", code=302)
-
-    @app.errorhandler(403)
-    def page_403(e):
-        """
-        403 webpage
-        ---
-        description: show users webpage 'error.html'
-        parameters:
-        responses:
-        200:
-            description: successfully show the webpage 'error.html'
-        """
-
-        return render_template(const.HTML_ERROR, code=403, des=const.DES_HTTP_CODE_403)
+        return redirect("/editor", code=302)
 
     @app.errorhandler(404)
     def page_404(e):
@@ -58,12 +44,24 @@ def create_app(test_config=None):
         404 webpage
         ---
         description: show users webpage 'error.html'
-        parameters:
         responses:
         200:
             description: successfully show the webpage 'error.html'
         """
 
         return render_template(const.HTML_ERROR, code=404, des=const.DES_HTTP_CODE_404)
+
+    @app.errorhandler(405)
+    def page_403(e):
+        """
+        405 webpage
+        ---
+        description: show users webpage 'error.html'
+        responses:
+        200:
+            description: successfully show the webpage 'error.html'
+        """
+
+        return render_template(const.HTML_ERROR, code=405, des=const.DES_HTTP_CODE_405)
 
     return app
