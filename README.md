@@ -111,12 +111,14 @@ This project layout will look like this:
 1. HomePage(`http://localhost/editor`)
     - [x] authorization (user isolation)
     - [x] integrate an online code editor
-        - [x] syntax highlight
-        - [x] simple code complementation
-        - [x] the flexible size
-        - [x] various themes
+        - syntax highlight
+        - simple code complementation
+        - the flexible size
+        - various themes
+        - shortcuts(Run -> Crtl + R | Update -> Crtl + U)
     - [x] integrate an output console
-        - [x] the flexible size
+        - the flexible size
+        - read only
     - [x] complie the online code and run it
     - [x] save the online code as a local file
     - [x] clear the code in the online code editor
