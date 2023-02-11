@@ -106,6 +106,7 @@ This project layout will look like this:
 > <p><strong>./Cyclone4Web/flaskr/unit_test.sql</strong>, a test Python file including unit tests for all web interfaces</p>
 
 > <p><strong>./Cyclone4Web/flaskr/src/editor_view.py</strong>, the main Python file including all the definitions of critical interfaces.</p>
+> <p><strong>./Cyclone4Web/flaskr/static/js/editor.js</strong>, the main Javascript file including all the logic that is responsible for dealing with the web interfaces.</p>
 
 ## 5. Functions
 1. HomePage(`http://localhost/editor`)
