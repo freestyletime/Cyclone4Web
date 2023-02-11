@@ -83,7 +83,6 @@ function http_post(url, paras, func, contentType='application/x-www-form-urlenco
             } else  func(data, status, xhr);
         },
         error: function (xhr, status, error) {
-            
             if(error == 'timeout') {
                 alert("Request timeout. Please adjust the timeout option and try it again.");
             }else alert("Request failed. Please hold for a second.");
