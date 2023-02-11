@@ -172,51 +172,57 @@ This is the result in my machine:
 
 ## 7. Third-party frameworks in Cyclone4Web
 <table>
-   <thead>
-      <tr>
-         <th>Name</th>
-         <th>Version</th>
-         <th>Link</th>
-         <th>Description</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr>
-         <td>Notify.js</td>
-         <td>0.4.2</td>
-         <td><a href="https://notifyjs.jpillora.com/" target="_blank">https://notifyjs.jpillora.com</a></td>
-         <td>Notify.js is a jQuery plugin to provide simple yet fully customisable notifications. </td>
-      </tr>
-      <tr>
-         <td>jquery-loading</td>
-         <td>2.0.0-rc.2</td>
-         <td><a href="http://carlosbonetti.github.io/jquery-loading/" target="_blank">https://carlosbonetti.github.io/jquery-loading</a></td>
-         <td>jquery-loading can add and manipulate loading states of any element on the page.</td>
-      </tr>
-      <tr>
-         <td>Ace</td>
-         <td>1.1.5</td>
-         <td><a href="https://ace.c9.io/" target="_blank">https://ace.c9.io</a></td>
-         <td>Ace is an embeddable code editor written in JavaScript.</td>
-      </tr>
-      <tr>
-         <td>Bootstrap</td>
-         <td>2.3.2</td>
-         <td><a href="https://getbootstrap.com/2.3.2/" target="_blank">https://getbootstrap.com/2.3.2</a></td>
-         <td>Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development.</td>
-      </tr>
-      <tr>
-         <td>Flask</td>
-         <td>2.2.2</td>
-         <td><a href="https://flask.palletsprojects.com/en/2.2.x/" target="_blank">https://flask.palletsprojects.com/en/2.2.x</a></td>
-         <td>Flask is a micro web framework written in Python and depends on the Jinja template engine and the Werkzeug WSGI toolkit.</td>
-      </tr>
-      <tr>
-         <td>Jinja2</td>
-         <td>3.1.2</td>
-         <td><a href="https://jinja.palletsprojects.com/en/3.1.x/" target="_blank">https://jinja.palletsprojects.com/en/3.1.x</a></td>
-         <td>Jinja is a fast, expressive, extensible templating engine. Special placeholders in the template allow writing code similar to Python syntax. Then the template is passed data to render the final document.</td>
-      </tr>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Version</th>
+            <th>Link</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Notify.js</td>
+            <td>0.4.2</td>
+            <td><a href="https://notifyjs.jpillora.com/" target="_blank">https://notifyjs.jpillora.com</a></td>
+            <td>Notify.js is a jQuery plugin to provide simple yet fully customisable notifications. </td>
+        </tr>
+        <tr>
+            <td>jquery-loading</td>
+            <td>2.0.0-rc.2</td>
+            <td><a href="http://carlosbonetti.github.io/jquery-loading/" target="_blank">https://carlosbonetti.github.io/jquery-loading</a></td>
+            <td>jquery-loading can add and manipulate loading states of any element on the page.</td>
+        </tr>
+        <tr>
+            <td>Ace</td>
+            <td>1.1.5</td>
+            <td><a href="https://ace.c9.io/" target="_blank">https://ace.c9.io</a></td>
+            <td>Ace is an embeddable code editor written in JavaScript.</td>
+        </tr>
+        <tr>
+            <td>Bootstrap</td>
+            <td>2.3.2</td>
+            <td><a href="https://getbootstrap.com/2.3.2/" target="_blank">https://getbootstrap.com/2.3.2</a></td>
+            <td>Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development.</td>
+        </tr>
+        <tr>
+            <td>Flask</td>
+            <td>2.2.2</td>
+            <td><a href="https://flask.palletsprojects.com/en/2.2.x/" target="_blank">https://flask.palletsprojects.com/en/2.2.x</a></td>
+            <td>Flask is a micro web framework written in Python and depends on the Jinja template engine and the Werkzeug WSGI toolkit.</td>
+        </tr>
+        <tr>
+            <td>Jinja2</td>
+            <td>3.1.2</td>
+            <td><a href="https://jinja.palletsprojects.com/en/3.1.x/" target="_blank">https://jinja.palletsprojects.com/en/3.1.x</a></td>
+            <td>Jinja is a fast, expressive, extensible templating engine. Special placeholders in the template allow writing code similar to Python syntax. Then the template is passed data to render the final document.</td>
+        </tr>
+        <tr>
+            <td>pytest</td>
+            <td>7.2.1</td>
+            <td><a href="https://docs.pytest.org/en/7.2.x/" target="_blank">https://docs.pytest.org/en/7.2.x</a></td>
+            <td>The pytest framework makes it easy to write small, readable tests, and can scale to support complex functional testing for applications and libraries.</td>
+        </tr>
    </tbody>
 </table>
 
