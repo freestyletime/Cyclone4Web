@@ -7,8 +7,8 @@ The whole project adopts `Flask` framework, this is a micro web framework writte
 
 ## 2. Before running
 We need to install some softwares and tools to support the project.
-* [Install Python 3.10.5](https://www.python.org/downloads/release/python-3105/) in your PC first.
-* Clone `Cyclone4Web` to your PC
+* [Install Python 3.10.5](https://www.python.org/downloads/release/python-3105/) in your machine first.
+* Clone `Cyclone4Web` to your machine.
 * (Optional) Open CMD/Terminal and install the `virtualenv` by using the following command (this is a type of library that allows us to create a virtual environment and use it):
     ```
     > pip install virtualenv
@@ -28,7 +28,7 @@ We need to install some softwares and tools to support the project.
 This is the well-configured project structure.
 <div><img alt="project structure" src='screenshots/projectStructure.png' width=350></div>
 
-## 2. Run project
+## 3. Run project
 Open CMD/Terminal and execute the following command:
 ```
 (env) > python3 app.py
@@ -46,24 +46,65 @@ This is the screenshot of `HomePage`:
 <img src='screenshots/homePage.png' width=750>
 </div>
 
-## 3. Project structure in detail
+## 4. Project layout
 
-## 4. Functions
+```
+./Cyclone4Web
+├── flaskr/
+│   ├── __init__.py
+│   ├── config.py
+│   ├── unit_test.sql
+│   ├── src/
+│   │   ├── __init__.py
+│   │   └── editor_view.py
+│   ├── templates/
+│   │   ├── about.html
+│   │   ├── error.html
+│   │   ├── index.html
+│   │   └── _layouts/
+│   │       ├── default.html
+│   │       ├── footer.html
+│   │       ├── head.html
+│   │       ├── header.html
+│   │       └── script.html
+│   └── static/
+│       ├── js/
+│       ├── css/
+│       └── img/
+├── Cyclone/
+├── tests/
+├── venv/
+├── doc/
+├── tmp/
+├── ex.sh
+├── app.py
+├── MANIFEST.in
+├── LICENSE
+└── .gitignore
+
+```
+## 5. Functions
 1. HomePage(`http://localhost/editor`)
-   - integrate an online code editor with the flexible size
-   - integrate an output console with the flexible size
-   - various themes to fit in the online code editor
-   - complie online code and run it
-   - save the online code as a local file
-   - clear the code in the online code editor
-   - upload the local `.cyclone` file to the online code editor 
-   - a switch of `option-trace`
-   - a switch of `option-timeout`
-   - support to download the `.trace` file after runing
-   - list the examples from the `Cyclone` folder
-   - put the example code into the online code editor when clicking
-   - a link to the official website of the **[Cyclone Tutorial](https://classicwuhao.github.io/cyclone_tutorial/tutorial-content.html)**
-   - a link to the **[Cyclone author](https://github.com/classicwuhao)**
+    - authorization (user isolation)
+    - integrate an online code editor
+        - syntax highlight
+        - simple code complementation
+        - the flexible size
+        - various themes
+    - integrate an output console
+        - the flexible size
+    - complie the online code and run it
+    - save the online code as a local file
+    - clear the code in the online code editor
+    - upload a `.cyclone` file to the online code editor(Maximum 10KB)
+    - a switch of `option-trace`
+    - a switch of `option-timeout`
+    - a loading covering when doing request
+    - support to download the `.trace` file after runing
+    - list the examples in the `Cyclone` folder
+    - put the example code onto the online code editor when clicking
+    - a link to the official website of the **[Cyclone Tutorial](https://classicwuhao.github.io/cyclone_tutorial/tutorial-content.html)**
+    - a link to the **[Cyclone author](https://github.com/classicwuhao)**
 2. AboutPage(`http://localhost/about`)
 3. ErrorPage(`http://localhost/error`)
     - 404 Error handler

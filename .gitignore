@@ -16,7 +16,7 @@ Cyclone/
 
 dist/
 build/
-tmp/
+tmp/*/
 *.egg-info/
 
 MANIFEST.in

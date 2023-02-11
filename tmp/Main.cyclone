@@ -1,0 +1,11 @@
+graph G { 
+    abstract start node  S1 {} 
+    abstract node  S2 {} 
+    edge  t1 { S1 -> S1 } 
+    edge  t2 { S1 -> S2 } 
+    edge  t3 { S2 -> S1 } 
+    edge  t4 { S2 -> S2 } 
+    goal { 
+        check for 5 condition (!(S1->S1) && !(S2->S2)) reach (S2)
+    }
+}
