@@ -92,7 +92,7 @@ This project layout will look like this:
 > <p><strong>./Cyclone4Web/tmp</strong>, a foler used for storing temtorary data when server running.</p>
 > <p><strong>./Cyclone4Web/Cyclone</strong>, an unziped Cyclone folder containing a runtime environment of Cyclone.</p>
 
-> <p><strong>./Cyclone4Web/flaskr/src</strong>, a Python source code folder containing the critical code of web interfaces.</p>
+> <p><strong>./Cyclone4Web/flaskr/src</strong>, a Python source code folder containing the critical code of interfaces.</p>
 > <p><strong>./Cyclone4Web/flaskr/static</strong>, a folder containing the general static resources including .js, .css, and images.</p>
 > <p><strong>./Cyclone4Web/flaskr/templates</strong>, a folder containing all the .html pages.</p>
 > <p><strong>./Cyclone4Web/flaskr/templates/_layouts</strong>, a folder containing common .html templates that are abstracted using <strong>Jinja</strong>.</p>
@@ -103,10 +103,10 @@ This project layout will look like this:
 
 > <p><strong>./Cyclone4Web/flaskr/__init__.py</strong>, a crucial Python file where reads the configuration and defines the interfaces of the homepage entrance and error handlers when project starting.</p>
 > <p><strong>./Cyclone4Web/flaskr/config.py</strong>, a Python file containing two classes namely <b>Config</b> and <b>Constants</b>. The first is used for the configuration of Flask and the other is used for maintaining constants.</p>
-> <p><strong>./Cyclone4Web/flaskr/unit_test.sql</strong>, a test Python file including unit tests for all web interfaces</p>
+> <p><strong>./Cyclone4Web/flaskr/unit_test.sql</strong>, a test Python file including unit tests for all interfaces</p>
 
 > <p><strong>./Cyclone4Web/flaskr/src/editor_view.py</strong>, the main Python file including all the definitions of critical interfaces.</p>
-> <p><strong>./Cyclone4Web/flaskr/static/js/editor.js</strong>, the main Javascript file including all the logic that is responsible for dealing with the web interfaces.</p>
+> <p><strong>./Cyclone4Web/flaskr/static/js/editor.js</strong>, the main Javascript file including all the logic that is responsible for dealing with the interfaces.</p>
 
 ## 5. Functions
 1. HomePage(`http://localhost/editor`)
@@ -127,17 +127,50 @@ This project layout will look like this:
     - [x] a switch of `option-trace`
     - [x] a switch of `option-timeout`
     - [x] a loading covering when doing request
-    - [x] support to download the `.trace` file after runing
+    - [x] support to extract and download the `.trace` file after runing
     - [x] list the examples in the `Cyclone` folder
     - [x] put the example code onto the online code editor when clicking
     - [x] a link to the official website of the **[Cyclone Tutorial](https://classicwuhao.github.io/cyclone_tutorial/tutorial-content.html)**
-    - a link to the **[Cyclone author](https://github.com/classicwuhao)**
+    - [x] a link to the **[Cyclone author](https://github.com/classicwuhao)**
 2. AboutPage(`http://localhost/about`)
 3. ErrorPage(`http://localhost/error`)
     - 404 Error handler
     - 405 Error handler
 
-## 6. Third-party frameworks in Cyclone4Web
+## 6. Unit Test
+[Unit tests](./flaskr/unit_test.py) basically contain correctness tests for all interfaces. 
+
+1. You need to modify a little code in [editor_view.py](./flaskr/src/editor_view.py) before running the unit tests:
+    ```python
+    ...
+    def _get_user_id():
+        # Production
+        # return request.cookies.get(const.FIELD_USER_ID)
+        # Test (We pass parameters instead of using the cookie)
+        return request.form.get(const.FIELD_USER_ID)
+    ...
+    ```
+
+2. The unique id will be automatically produced when a user open the web browser to visit `Cyclone4Web`. It is actually a name of one of the folders under the `tmp` folder`
+    <div><img alt="test result" src='screenshots/uniqueId.png' width=750></div>
+
+3. And then assign an avaiable unique id to `user_id` in [Unit tests](./flaskr/unit_test.py):
+    ```python
+    ...
+    user_id = "use your an avaiable unique id to replace"
+    ...
+    ```
+
+4. Finally, running the following command to verify:
+    ```
+    (env) > pytest flaskr/ 
+    ```
+
+This is the result in my machine:
+<div><img alt="test result" src='screenshots/testResult.png' width=750></div>
+
+
+## 7. Third-party frameworks in Cyclone4Web
 <table>
    <thead>
       <tr>

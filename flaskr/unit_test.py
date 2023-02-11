@@ -4,6 +4,7 @@ from flask import Flask
 from . import create_app
 from .config import const
 
+user_id = "CYCLONE4WEB-USER-cedcd31c-1578-47fe-b23e-98acab94d6e2"
 
 @pytest.fixture()
 def app():
@@ -83,7 +84,7 @@ def test_runCode(client):
                             check for 5 condition (!(S1->S1) && !(S2->S2)) reach (S2)
                         }
                     }""",
-        "unique_user_id": "CYCLONE4WEB-USER-68597c1e-2731-4a22-affc-fcb5e7699111"
+        "unique_user_id": user_id
         })
 
     assert response.status_code == 200
@@ -97,7 +98,7 @@ def test_send_trace_file(client):
     '''
     response = client.get('/editor/file?path=/Users/chenchristian/Development/PycharmProjects/Cyclone4Web/Cyclone/trace/G.trace',
         data={
-            "unique_user_id": "CYCLONE4WEB-USER-68597c1e-2731-4a22-affc-fcb5e7699111"
+            "unique_user_id": user_id
         }
     )
     assert response.status_code == 200
@@ -110,7 +111,7 @@ def test_upload(client):
     resources = Path(__file__).parent.parent / "tmp"
     response = client.post('/editor/upload',
         data={
-            "unique_user_id": "CYCLONE4WEB-USER-68597c1e-2731-4a22-affc-fcb5e7699111",
+            "unique_user_id": user_id,
             "file": ( resources / "Main.cyclone").open("rb")
         }
     )
@@ -126,7 +127,7 @@ def test_downLoadFile(client):
     '''
     response = client.post('/editor/save2LocalFile',
         data={
-            "unique_user_id": "CYCLONE4WEB-USER-68597c1e-2731-4a22-affc-fcb5e7699111",
+            "unique_user_id": user_id,
             "code": """graph G { 
                         abstract start node  S1 {} 
                         abstract node  S2 {} 
@@ -150,7 +151,7 @@ def test_getExamplesList(client):
     '''
     response = client.post('/editor/examples',
         data={
-            "unique_user_id": "CYCLONE4WEB-USER-68597c1e-2731-4a22-affc-fcb5e7699111"
+            "unique_user_id": user_id
         }
     )
 
@@ -165,7 +166,7 @@ def test_getExample(client):
     '''
     response = client.post('/editor/example',
         data={
-            "unique_user_id": "CYCLONE4WEB-USER-68597c1e-2731-4a22-affc-fcb5e7699111",
+            "unique_user_id": user_id,
             "file": "example6.cyclone",
             "folder": "chapter1"
         }
