@@ -1,5 +1,7 @@
 # Cyclone4Web
 
+## [Online Instance](http://ec2-18-207-138-148.compute-1.amazonaws.com/editor/)
+
 ## Cyclone4Web Index
 1. [Goals of this project](https://github.com/freestyletime/Cyclone4Web#1-goals-of-this-project)
 2. [Before running](https://github.com/freestyletime/Cyclone4Web#2-before-running)
@@ -24,15 +26,15 @@ We need to install some softwares and tools to support the project.
     ```
 * (Optional) Enter the project folder running the following command to create a virtual environment:
     ```
-    > Python3 -m venv env  
+    > python3 -m venv env  
     ```
 * Install all the relavant [dependencies](requirements.txt) by using the following command: 
     ```
     (env) > pip install -r requirements.txt
     ```
 * Make sure you have java (64 bit is recommended) installed on your machine.
-* [Download Cyclone](https://classicwuhao.github.io/cyclone_tutorial/installation.html) and Unzip it to a folder called `Cyclone`.
-* Copy the entire `Cyclone` folder to the root of the project
+* [Download Cyclone](https://classicwuhao.github.io/cyclone_tutorial/installation.html) and Unzip it to a folder called `cyclone`.
+* Copy the entire `cyclone` folder to the root of the project
 
 This is the well-configured project structure.
 <div><img alt="project structure" src='screenshots/projectStructure.png' width=350></div>
@@ -166,7 +168,7 @@ This project layout will look like this:
 3. And then assign an avaiable unique id to `user_id` in [Unit tests](./flaskr/unit_test.py):
     ```python
     ...
-    user_id = "use your an avaiable unique id to replace"
+    user_id = "use your avaiable unique id to replace"
     ...
     ```
 
