@@ -21,7 +21,7 @@ const.HTML_ABOUT = "about.html"
 const.HTML_ERROR = "error.html"
 const.SPT_EX = "./ex.sh"
 # upload configuration
-const.ALLOWED_EXTENSIONS = set(['txt', 'cyclone'])
+const.ALLOWED_EXTENSIONS = set(['cyclone'])
 const.MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB
 # constant keys & values
 const.BRAND_PREFIX = "CYCLONE4WEB-USER-";
@@ -45,7 +45,7 @@ const.ERROR_CODE_ETY = "The code is empty, please run again!"
 const.ERROR_CYC_TRACE_RETURN = "Cyclone doesn't return the trace file! Please contact administration to fix it!"
 const.ERROR_FILE_NOT_EXIST = "Lacking of the file!"
 const.ERROR_FILE_NAME_ETY = "The file name is empty!"
-const.ERROR_FILE_UPDATE = "Something goes wrong! Fail to upload the file!"
+const.ERROR_FILE_UPDATE = "Only support the file with .cyclone format. Please try it again!"
 
 const.CODE_USER_ID = "CE00001";
 const.CODE_CODE_ETY = "CE00002";

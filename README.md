@@ -145,8 +145,8 @@ This project layout will look like this:
     - [x] a link to the **[Cyclone author](https://github.com/classicwuhao)**
 2. AboutPage(`http://localhost/about`)
 3. ErrorPage(`http://localhost/error`)
-    - 404 Error handler
-    - 405 Error handler
+    - [x] 404 Error handler
+    - [x] 405 Error handler
 
 ## 6. Unit Test
 [Unit tests](./flaskr/unit_test.py) basically contain correctness tests for all interfaces. 

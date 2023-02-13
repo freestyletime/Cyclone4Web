@@ -171,8 +171,8 @@ $("button#upload").click(function () {
         // Let sever to check
         // var fileType = fileMsg[0].type;
         // var type = (fileType.substr(fileType.lastIndexOf("."))).toLowerCase();
-        if (fileSize > 10240) {
-            alert("The file size should be less than 10KB.");
+        if (fileSize > 102400) {
+            alert("The file size should be less than 100KB.");
             return false;
         }
 
