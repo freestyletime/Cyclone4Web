@@ -197,6 +197,12 @@ This is the result in my machine:
     </thead>
     <tbody>
         <tr>
+            <td>js-cookie</td>
+            <td>3.0.1</td>
+            <td><a href="https://github.com/js-cookie/js-cookie" target="_blank">https://github.com/js-cookie/js-cookie</a></td>
+            <td>A simple, lightweight JavaScript API for handling cookies. </td>
+        </tr>
+        <tr>
             <td>Notify.js</td>
             <td>0.4.2</td>
             <td><a href="https://notifyjs.jpillora.com/" target="_blank">https://notifyjs.jpillora.com</a></td>
