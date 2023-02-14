@@ -89,6 +89,7 @@ This project layout will look like this:
 ├── doc/
 ├── tmp/
 ├── ex.sh
+├── dot2png.sh
 ├── app.py
 ├── MANIFEST.in
 ├── LICENSE
@@ -111,6 +112,7 @@ This project layout will look like this:
 ### **Files description**:
 > <p><strong>./Cyclone4Web/app.py</strong>, an entrance of the project.</p>
 > <p><strong>./Cyclone4Web/ex.sh</strong>, a Shell script used for executing the .cyclone file in command-line.</p>
+> <p><strong>./Cyclone4Web/dot2png.sh</strong>, a Shell script used for translate a .dot file into an image file.</p>
 
 > <p><strong>./Cyclone4Web/flaskr/__init__.py</strong>, a crucial Python file where reads the configuration and defines the interfaces of the homepage entrance and error handlers when project starting.</p>
 > <p><strong>./Cyclone4Web/flaskr/config.py</strong>, a Python file containing two classes namely <b>Config</b> and <b>Constants</b>. The first is used for the configuration of Flask and the other is used for maintaining constants.</p>
@@ -134,11 +136,12 @@ This project layout will look like this:
     - [x] complie the online code and run it
     - [x] save the online code as a local file
     - [x] clear the code in the online code editor
-    - [x] upload a `.cyclone` file to the online code editor(Maximum 10KB)
+    - [x] support to upload a `.cyclone` file to the online code editor(Maximum 100KB)
     - [x] a switch of `option-trace`
     - [x] a switch of `option-timeout`
     - [x] a loading covering when doing request
-    - [x] support to extract and download the `.trace` file after runing
+    - [x] support to extract the `.trace` file
+    - [x] support to convert the `.dot` file into an image
     - [x] list the examples in the `Cyclone` folder
     - [x] put the example code onto the online code editor when clicking
     - [x] a link to the official website of the **[Cyclone Tutorial](https://classicwuhao.github.io/cyclone_tutorial/tutorial-content.html)**

@@ -1,11 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Merriweather:300,300italic,400,400italic,700,700italic);
-@import url(http://fonts.googleapis.com/css?family=Montserrat);
-
-body { 
-    font-family: 'Merriweather', Georgia, Times; 
-    font-size: 18px; 
-    background-color: blanchedalmond;
-}
+@import url(https://fonts.googleapis.com/css?family=Roboto);
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 { font-family: 'Merriweather', Georgia, Times; font-weight: 700;}
 
@@ -48,31 +41,30 @@ h3.text-muted a:hover { text-decoration: none; color: #0088cc; }
     height: 45px;
 }
 
-.panel {
-    margin: 0px;
-    padding: 3px;
-    outline-width: 2pt;
-    outline-style: dotted;
-    background-color: transparent;
-}
-
 .menu {
-    width:20%;
-    float:left;
-    padding: 5px;
+    width:22%;
+    padding: 2px;
+    outline-width: 2pt;
+    outline-style: groove;
 }
 
 .examples {
     overflow-y: scroll;
-    height: 500px;
+    height: 438px;
 }
 
 .content {
-    width:79.5%;
+    width:77.5%;
     float:right;
     padding: 3px;
     outline-width: 2pt;
     outline-style: groove;
+}
+
+#examples_list {
+    padding: 5px;
+    outline-width: 1pt;
+    outline-style: dashed;
 }
 
 #counter {
@@ -86,7 +78,7 @@ h3.text-muted a:hover { text-decoration: none; color: #0088cc; }
 #count-value {
     margin-left: 8px;
     font-weight: bold;
-  }
+}
 
 #editor {
     position: relative;
@@ -103,6 +95,9 @@ h3.text-muted a:hover { text-decoration: none; color: #0088cc; }
     outline-style: double;
 }
 
-#info {
-    border-style: dotted;
+button#theme {
+    font-size: 14px;
+}
+button#dropdown{
+    font-size: 14px;
 }

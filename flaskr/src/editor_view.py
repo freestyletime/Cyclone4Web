@@ -146,12 +146,23 @@ def send_trace_file():
 
     if not _get_user_id(): return _response_(False, const.ERROR_USER_ID, code=const.CODE_USER_ID)
     path = request.args.get(const.FIELD_FILE_PATH)
-    if not path: return _response_(False, const.ERROR_FILE_NOT_EXIST, code=const.CODE_FILE_NOT_EXIST)
-    try: 
+    if not path or not Path(path).exists(): abort(404)
+    
+    try:
+        format = path.rsplit('.', 1)[1]
+        if format and format == const.ALLOWED_EXTENSIONS_DOT:
+            path_dot = path.rsplit(os.sep, 1)
+            parent = path_dot[0]
+            filename = path_dot[1]
+            result = subprocess.Popen([const.SPT_DOT, const.PATH_PROJECT, filename], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            stdout, stderr = result.communicate()
+            path_png = parent + os.sep + const.PNG_CYCLONE
+            if Path(path_png).exists():
+                return send_file(path_png, as_attachment=True)
+        
         return send_file(path, as_attachment=False)
     except Exception as e:
-        # check if the trace file is sent successfully
-        none
+        abort(404)
 
 
 @editor.route('/upload', methods = ['POST'])

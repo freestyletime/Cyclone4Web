@@ -1,68 +1,71 @@
 {% extends "_layouts/default.html" %}
 {% block content %}
 <div class="panel row">
-	<div class="menu col-md-3">
-		<div>
-			<h4>Examples</h4>
-			<div class="examples">
-				<ul id="examples_list" class="nav nav-list">
-				</ul>
-			</div>
-		</div>
-	</div>
-	<div class="content col-md-7">
-		<div class="col-auto">
-			<div class="toolbar btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-				<!-- run button -->
-				<div class="btn-group mr-2" role="group" aria-label="group1">
-					<button id="run" type="button" class="btn btn-danger btn-lg">Run</button>
-				</div>
-				<!-- save button -->
-				<div class="btn-group mr-2" role="group" aria-label="group2">
-					<button id="save" type="button" class="btn btn-info btn-lg">Save</button>
-				</div>
-				<!-- clear button -->
-				<div class="btn-group mr-2" role="group" aria-label="group3">
-					<button id="clear" type="button" class="btn btn-warning btn-lg">Clear</button>
-				</div>
-				<!-- Upload button -->
-				<div class="btn-group mr-2" role="group" aria-label="group4">
-					<button id="upload" type="button" class="btn btn-primary btn-lg">Upload</button>
-				</div>
-				<!-- Trace button -->
-				<div class="btn-group mr-2" role="group" aria-label="group5">
-					<button id="trace" type="button" class="btn btn-primary btn-lg">Trace</button>
-				</div>
-				<!-- Timeout button -->
-				<div id="counter" class="btn-group mr-2" role="group" aria-label="group6">
-					<div class="btn-group mr-2" role="group" aria-label="group1">
-						<button class="btn btn-primary btn-lg" id="increment"><strong>+</strong></button>
-					</div>
-					<div class="btn-group mr-2" role="group" aria-label="group2">
-						<P>&nbsp;&nbsp;Timeout: <span id="count-value">0</span> s&nbsp;&nbsp;</P>
-					</div>
-					<div class="btn-group mr-2" role="group" aria-label="group3">
-						<button class="btn btn-danger btn-lg" id="decrement"><strong>-</strong></button>
-					</div>
-				</div>
-
-				<!-- theme button -->
-				<div class="btn-group navbar-right" role="group" aria-label="group7">
-					<button class="btn btn-lg">Theme</button>
-					<button class="btn btn-lg dropdown-toggle" data-toggle="dropdown">
-						<span class="caret"></span>
-					</button>
-					<ul id="theme" class="dropdown-menu">
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!-- code editor -->
-		<div id="editor" class="col-auto">{{ code }}</div>
-		<div id="result" class="col-auto">
-			<textarea id="output" placeholder="Runing result……" readonly="true" class="form-control" rows="6"></textarea>
-		</div>
-	</div>
+    <div class="menu col-md-3">
+        <div>
+            <!-- theme button -->
+            <div id="theme" class="btn-group navbar">
+                <button id="theme" class="btn btn-lg"><strong>Theme</strong></button>
+                <button id="dropdown" class="btn btn-lg dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul id="theme" class="dropdown-menu">
+                </ul>
+            </div>
+            <!-- example list -->
+            <div id="examples_list">
+                <h4>Examples</h4>
+                <div class="examples">
+                    <ul id="examples_list" class="nav nav-list">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content col-md-7">
+        <div class="col-auto">
+            <div class="toolbar btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <!-- run button -->
+                <div class="btn-group mr-2" role="group" aria-label="group1">
+                    <button id="run" type="button" class="btn btn-danger btn-lg">Run</button>
+                </div>
+                <!-- save button -->
+                <div class="btn-group mr-2" role="group" aria-label="group2">
+                    <button id="save" type="button" class="btn btn-info btn-lg">Save</button>
+                </div>
+                <!-- clear button -->
+                <div class="btn-group mr-2" role="group" aria-label="group3">
+                    <button id="clear" type="button" class="btn btn-warning btn-lg">Clear</button>
+                </div>
+                <!-- Upload button -->
+                <div class="btn-group mr-2" role="group" aria-label="group4">
+                    <button id="upload" type="button" class="btn btn-primary btn-lg">Upload</button>
+                </div>
+                <!-- Trace button -->
+                <div class="btn-group mr-2" role="group" aria-label="group5">
+                    <button id="trace" type="button" class="btn btn-primary btn-lg">Trace</button>
+                </div>
+                <!-- Timeout button -->
+                <div id="counter" class="btn-group mr-2" role="group" aria-label="group6">
+                    <div class="btn-group mr-2" role="group" aria-label="group1">
+                        <button class="btn btn-primary btn-lg" id="increment"><strong>+</strong></button>
+                    </div>
+                    <div class="btn-group mr-2" role="group" aria-label="group2">
+                        <P id="timeout">&nbsp;&nbsp;Timeout: <span id="count-value">0</span> s&nbsp;&nbsp;</P>
+                    </div>
+                    <div class="btn-group mr-2" role="group" aria-label="group3">
+                        <button class="btn btn-danger btn-lg" id="decrement"><strong>-</strong></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- code editor -->
+        <div id="editor" class="col-auto">{{ code }}</div>
+        <div id="result" class="col-auto">
+            <textarea id="output" placeholder="Runing result……" readonly="true" class="form-control"
+                rows="6"></textarea>
+        </div>
+    </div>
 </div>
 {% endblock %}
 {% block script %}
@@ -70,7 +73,9 @@
 <!-- Code Editor configuration -->
 <script src="{{ url_for('static', filename= 'js/ace/ace.js') }}" type="text/javascript" charset="utf-8"></script>
 <script src="{{ url_for('static', filename= 'js/ace/mode-java.js') }}" type="text/javascript" charset="utf-8"></script>
-<script src="{{ url_for('static', filename= 'js/ace/ext-themelist.js') }}" type="text/javascript" charset="utf-8"></script>
-<script src="{{ url_for('static', filename= 'js/ace/ext-language_tools.js') }}" type="text/javascript" charset="utf-8"></script>
+<script src="{{ url_for('static', filename= 'js/ace/ext-themelist.js') }}" type="text/javascript"
+    charset="utf-8"></script>
+<script src="{{ url_for('static', filename= 'js/ace/ext-language_tools.js') }}" type="text/javascript"
+    charset="utf-8"></script>
 <script src="{{ url_for('static', filename= 'js/editor.js') }}" type="text/javascript" charset="utf-8"></script>
 {% endblock %}

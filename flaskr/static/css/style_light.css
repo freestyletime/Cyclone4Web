@@ -1,0 +1,24 @@
+body { 
+    font-family: 'Roboto', Georgia, Times; 
+    font-size: 16px; 
+    background-color: white;
+    transition: background-color 0.5s ease-in-out;
+}
+
+.panel {
+    margin: 0px;
+    padding: 3px;
+    outline-width: 2pt;
+    outline-style: dotted;
+    background-color: transparent;
+    color: black;
+}
+
+#output {
+    background-color: burlywood;
+    color: blue;
+}
+
+#output::-webkit-input-placeholder { 
+    color: blue; /* Change this to the desired color */
+}

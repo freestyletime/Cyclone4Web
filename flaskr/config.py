@@ -20,8 +20,11 @@ const.HTML_INDEX = "index.html"
 const.HTML_ABOUT = "about.html"
 const.HTML_ERROR = "error.html"
 const.SPT_EX = "./ex.sh"
+const.SPT_DOT = "./dot2png.sh"
+const.PNG_CYCLONE = "cyclone.png"
 # upload configuration
-const.ALLOWED_EXTENSIONS = set(['cyclone'])
+const.ALLOWED_EXTENSIONS = set(["cyclone"])
+const.ALLOWED_EXTENSIONS_DOT = "dot"
 const.MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB
 # constant keys & values
 const.BRAND_PREFIX = "CYCLONE4WEB-USER-";
