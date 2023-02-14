@@ -1,8 +1,8 @@
 # Cyclone4Web
 
-### [Online Instance on AWS](http://ec2-18-235-234-34.compute-1.amazonaws.com)
+#### [Online Instance on AWS](http://ec2-18-235-234-34.compute-1.amazonaws.com)
 
-## Cyclone4Web Index
+## Guide
 1. [Goals of this project](https://github.com/freestyletime/Cyclone4Web#1-goals-of-this-project)
 2. [Before running](https://github.com/freestyletime/Cyclone4Web#2-before-running)
 3. [Run project](https://github.com/freestyletime/Cyclone4Web#3-run-project)
@@ -26,7 +26,9 @@ We need to install some softwares and tools to support the project.
     ```
 * (Optional) Enter the project folder running the following command to create a virtual environment:
     ```
-    > python3 -m venv env  
+    > python3 -m venv env 
+    ...
+    > source env/bin/activate 
     ```
 * Install all the relavant [dependencies](requirements.txt) by using the following command: 
     ```
@@ -58,7 +60,7 @@ This is the screenshot of `HomePage`:
 </div>
 
 ## 4. Project layout
-As to project layout you can visit [Project Layout in Flask](https://flask.palletsprojects.com/en/2.2.x/tutorial/layout/)
+As to the project layout you can visit [Project Layout in Flask](https://flask.palletsprojects.com/en/2.2.x/tutorial/layout/)
 
 This project layout will look like this:
 ```

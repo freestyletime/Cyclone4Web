@@ -1,6 +1,6 @@
 // setup
 var editor = ace.edit("editor");
-editor.setFontSize(15);
+editor.setFontSize(18);
 editor.setShowPrintMargin(false);
 editor.setOptions({
     enableBasicAutocompletion: true,
@@ -11,6 +11,7 @@ editor.setOptions({
 // set mode
 var JavaMode = ace.require("ace/mode/java").Mode;
 editor.session.setMode(new JavaMode());
+if (Cookies.get("current_theme") == 1) editor.setTheme("ace/theme/terminal");
 
 // shortcut - run
 editor.commands.addCommand({
