@@ -1,4 +1,3 @@
 #!/bin/sh
 
-cd $1/cyclone/trace
-dot -Tpng $2 -o cyclone.png
+dot -Tpng $1/cyclone/trace/$2 -o $1/cyclone/trace/cyclone.png

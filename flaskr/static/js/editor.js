@@ -253,31 +253,3 @@ function getExample(folder, file) {
         editor.setValue(data, -1);
     });
 }
-
-// web theme switch
-$("ul#header_btns").prepend(`
-<li>
-<div id='theme_web'>
-<img id="light" src="/static/img/theme_light.svg" alt="light">
-<img style="display:none;" id="dark" src="/static/img/theme_dark.svg" alt="dark">
-</div>
-</li>
-`);
-
-$("div#theme_web").click(function(){
-    if ($("img#light").css("display") === "none") {
-        $("img#light").css("display", "inline");
-        $("img#dark").css("display", "none");
-        $("body").css("background-color", "white");
-        $("img#github-logo").attr("src", "/static/img/github-mark.png")
-        $("#theme-link").attr("href", "/static/css/style_light.css");
-      } else {
-        $("img#light").css("display", "none");
-        $("img#dark").css("display", "inline");
-        $("body").css("background-color", "black");
-        $("img#github-logo").attr("src", "/static/img/github-mark-white.png")
-        $("#theme-link").attr("href", "/static/css/style_dark.css");
-      }
-});
-
-
