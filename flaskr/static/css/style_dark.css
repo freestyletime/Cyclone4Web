@@ -15,6 +15,7 @@ body {
 }
 
 #output {
+    font-size: 12pt;
     background-color: black;
     color: springgreen;
     

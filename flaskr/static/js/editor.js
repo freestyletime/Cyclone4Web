@@ -238,12 +238,12 @@ $("button#decrement").click(function () {
 
 http_post("examples", {}, function(data) {
     for (var k in data) {
-        $("ul#examples_list").append("<li class='nav-header'>" + k + "</li>");
+        // $("ul#examples_list").append("<li class='nav-header'>" + k + "</li>");
         for (var n in data[k]) {
-            $("ul#examples_list").append("<li><a id=" + k + ">" + data[k][n] + "</a></li>");
+            $("ul#examples_list").append("<li><a id=" + k + " value=" + data[k][n] + ">" + data[k][n].split('.')[0] + "</a></li>");
         }
         $("a#" + k).click(function () {
-            getExample(this.id, this.text);
+            getExample(this.id,  $(this).attr("value"));
         });
     }
 });

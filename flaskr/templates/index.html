@@ -1,7 +1,7 @@
 {% extends "_layouts/default.html" %}
 {% block content %}
 <div class="panel row">
-    <div class="menu col-md-3">
+    <div class="menu col-xs-3">
         <div>
             <!-- theme button -->
             <div id="theme" class="btn-group navbar">
@@ -15,14 +15,16 @@
             <!-- example list -->
             <div id="examples_list">
                 <h4>Examples</h4>
+                <center>
                 <div class="examples">
                     <ul id="examples_list" class="nav nav-list">
                     </ul>
                 </div>
+            </center>
             </div>
         </div>
     </div>
-    <div class="content col-md-7">
+    <div class="content col-xs-6">
         <div class="col-auto">
             <div class="toolbar btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                 <!-- run button -->
@@ -62,8 +64,7 @@
         <!-- code editor -->
         <div id="editor" class="col-auto">{{ code }}</div>
         <div id="result" class="col-auto">
-            <textarea id="output" placeholder="Runing result……" readonly="true" class="form-control"
-                rows="6"></textarea>
+            <textarea id="output" placeholder="Runing result……" readonly="true" class="form-control" rows="5"></textarea>
         </div>
     </div>
 </div>
