@@ -123,6 +123,7 @@ This project layout will look like this:
 
 ## 5. Functions
 1. HomePage(`http://localhost/editor`)
+    - [x] website theme change
     - [x] authorization (user isolation)
     - [x] integrate an online code editor
         - syntax highlight
