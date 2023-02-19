@@ -295,6 +295,11 @@ def getExample():
     folder = request.form.get(const.FIELD_FOLDER)
     # TODO verify the data
     if file and folder:
-        code = Path(const.PATH_EXAMPLE + os.sep + folder + os.sep + file).read_text()
-        return _response_(True, const.SUCCESS_REQ, data=code)
+        try:
+            code = Path(const.PATH_EXAMPLE + os.sep + folder + os.sep + file).read_text()
+            return _response_(True, const.SUCCESS_REQ, data=code)
+        except Exception as e:
+            # TODO deal with the error when the file cannot be reached.
+            code = Path(parent + os.sep + const.DEFAULT_FILE_NAME).read_text()
+            return _response_(True, const.SUCCESS_REQ, data=code)
     else: return _response_(False, const.ERROR_FILE_NOT_EXIST, code=CODE_FILE_NOT_EXIST)

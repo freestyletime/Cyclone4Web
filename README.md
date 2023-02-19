@@ -1,4 +1,4 @@
-# Cyclone4Web
+# Cyclone4Web - An online integrated development environment for Cyclone
 
 #### [Online Instance on AWS](http://ec2-18-235-234-34.compute-1.amazonaws.com)
 

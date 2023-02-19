@@ -24,3 +24,4 @@ MANIFEST.in
 *.java
 *.class
 gunicorn.py
+run.sh
