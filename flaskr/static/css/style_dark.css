@@ -14,10 +14,10 @@ body {
 #output {
     font-size: 12pt;
     background-color: black;
-    color: springgreen;
+    color: #00FF00;
     
 }
 
 #output::-webkit-input-placeholder { 
-    color: springgreen; /* Change this to the desired color */
+    color: #00FF00; /* Change this to the desired color */
 }

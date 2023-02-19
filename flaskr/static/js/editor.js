@@ -11,7 +11,7 @@ editor.setOptions({
 // set mode
 var JavaMode = ace.require("ace/mode/java").Mode;
 editor.session.setMode(new JavaMode());
-if (Cookies.get("current_theme") == 1) editor.setTheme("ace/theme/terminal");
+if (Cookies.get("current_theme") == 1) editor.setTheme("ace/theme/gob");
 
 // shortcut - run
 editor.commands.addCommand({
