@@ -34,6 +34,12 @@ function create_themeSwitch() {
             Cookies.set(key_theme, value_theme_dark, { expires: 90 });
         }
     });
+
+    $('div#theme_web').on('click', function () {
+        // const customEvent = new CustomEvent('onThemeChange', { theme: { current: Cookies.get(key_theme) }});
+        const customEvent = new CustomEvent('onThemeChange', { detail: { theme: Cookies.get(key_theme) } });
+        document.dispatchEvent(customEvent);
+    });
 }
 
 function do_themeSwitch_dark() {

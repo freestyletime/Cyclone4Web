@@ -12,6 +12,10 @@ editor.setOptions({
 var JavaMode = ace.require("ace/mode/java").Mode;
 editor.session.setMode(new JavaMode());
 if (Cookies.get("current_theme") == 1) editor.setTheme("ace/theme/gob");
+document.addEventListener('onThemeChange', (event) => {
+    if(event.detail.theme == 0) editor.setTheme("ace/theme/dreamweaver");
+    else editor.setTheme("ace/theme/gob");
+});
 
 // shortcut - run
 editor.commands.addCommand({

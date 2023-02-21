@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 	{% include '_layouts/head.html' %}
+    {% include '_layouts/script.html' %}
 	<body>
 		<div id="container" class="container">
 			{% include '_layouts/header.html' %}
 			{% block content %}{% endblock %}
 			{% include '_layouts/footer.html' %}
 		</div> <!-- /container -->
-		{% include '_layouts/script.html' %}
 		{% block script %} {% endblock %}	
 	</body>
 </html>
