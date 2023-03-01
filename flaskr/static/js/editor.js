@@ -257,5 +257,6 @@ http_post("examples", {}, function(data) {
 function getExample(folder, file) {
     http_post("example", { folder: folder, file: file }, function(data) {
         editor.setValue(data, -1);
+        $('textarea#output').val("");
     });
 }
