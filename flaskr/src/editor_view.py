@@ -146,7 +146,7 @@ def send_trace_file():
 
     if not _get_user_id(): return _response_(False, const.ERROR_USER_ID, code=const.CODE_USER_ID)
     path = request.args.get(const.FIELD_FILE_PATH)
-    if not path or not Path(path).exists(): abort(404)
+    if not path or const.PATH_TRACE not in path or not Path(path).exists(): abort(404)
     
     try:
         format = path.rsplit('.', 1)[1]

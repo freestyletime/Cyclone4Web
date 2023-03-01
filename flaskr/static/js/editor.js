@@ -224,7 +224,7 @@ function clearTimeoutText() {
 }
 
 $("button#increment").click(function () {
-    if(count >= 30) return;
+    if(count >= 15) return;
     count++;
     $("span#count-value").text(count);
     clearTimeoutText();
