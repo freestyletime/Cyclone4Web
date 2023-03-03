@@ -1,6 +1,6 @@
 # Cyclone4Web - An online integrated development environment for Cyclone
 
-#### [Online Instance on AWS](http://ec2-18-235-234-34.compute-1.amazonaws.com)
+#### [Online Instance on AWS](https://cyclone4web.cs.nuim.ie/editor/)
 
 ## Guide
 1. [Goals of this project](https://github.com/freestyletime/Cyclone4Web#1-goals-of-this-project)
