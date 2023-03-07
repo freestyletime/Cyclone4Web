@@ -105,7 +105,7 @@ def runCode():
     if code and id:
         path = _check_path()
         Path(path).write_text(code)
-        result = subprocess.Popen([const.SPT_EX, const.PATH_PROJECT, path], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        result = subprocess.Popen([const.SPT_EX, const.PATH_PROJECT, path, _get_user_id()], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         stdout, stderr = result.communicate()
         
         symbol = "Trace Generated"

@@ -32,7 +32,7 @@ const.DEFAULT_FILE_NAME = 'Main.cyclone'
 
 const.PATH_PROJECT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 const.PATH_EXAMPLE = const.PATH_PROJECT + os.sep + 'cyclone' + os.sep + 'examples'
-const.PATH_TRACE = const.PATH_PROJECT + os.sep + 'cyclone' + os.sep + 'trace'
+const.PATH_TRACE = const.PATH_PROJECT + os.sep + 'cyclone' + os.sep + 'tmp'
 const.PATH_TMP_STORAGE = const.PATH_PROJECT + os.sep + 'tmp'
 
 const.FIELD_USER_ID = "unique_user_id"
