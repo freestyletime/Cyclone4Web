@@ -1,3 +1,3 @@
 #!/bin/sh
 
-dot -Tpng $1/cyclone/trace/$2 -o $1/cyclone/trace/cyclone.png
+dot -Tpng $1/cyclone/tmp/$3/trace/$2 -o $1/cyclone/tmp/$3/trace/cyclone.png

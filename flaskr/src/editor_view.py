@@ -154,7 +154,7 @@ def send_trace_file():
             path_dot = path.rsplit(os.sep, 1)
             parent = path_dot[0]
             filename = path_dot[1]
-            result = subprocess.Popen([const.SPT_DOT, const.PATH_PROJECT, filename], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            result = subprocess.Popen([const.SPT_DOT, const.PATH_PROJECT, filename, _get_user_id()], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             stdout, stderr = result.communicate()
             path_png = parent + os.sep + const.PNG_CYCLONE
             if Path(path_png).exists():
