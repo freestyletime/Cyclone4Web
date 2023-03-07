@@ -41,8 +41,12 @@ def _get_user_id():
 def _check_path():
     parent = const.PATH_TMP_STORAGE + os.sep + _get_user_id()
     path = parent + os.sep + const.DEFAULT_FILE_NAME
+
+    parent_trace = const.PATH_TRACE
+    parent_user_trace =  const.PATH_TRACE + os.sep + _get_user_id()
     if not Path(parent).exists(): Path(parent).mkdir()
-    if not Path(const.PATH_TRACE).exists(): Path(const.PATH_TRACE).mkdir()
+    if not Path(parent_trace).exists(): Path(parent_trace).mkdir()
+    if not Path(parent_user_trace).exists(): Path(parent_user_trace).mkdir()
     if not Path(path).exists(): Path(path).touch()
     return path
 # = = = = = = = = = = = = = = = = = =
