@@ -1,6 +1,6 @@
 # Cyclone4Web - An online integrated development environment for Cyclone
 
-#### [Online Instance on AWS](https://cyclone4web.cs.nuim.ie/editor/)
+#### [Online Instance on Maynooth University](https://cyclone4web.cs.nuim.ie/editor/)
 
 ## Guide
 1. [Goals of this project](https://github.com/freestyletime/Cyclone4Web#1-goals-of-this-project)
@@ -17,9 +17,9 @@ This project is my final homework of <em><strong>CS642[A] — Msc Computer Scien
 The whole project adopts **[Flask](https://flask.palletsprojects.com/en/2.2.x/)** framework, this is a micro web framework written in Python and depends on the `Jinja` template engine and the `Werkzeug WSGI` toolkit, to constructing a simple online integrated development environment for **[Cyclone](https://classicwuhao.github.io/cyclone_tutorial/tutorial-content.html)**. Cyclone is designed to provide a general solution to problems that can be described as a graph. Cyclone provides a specification language that allows users to describe a graphical structure along with conditions to be met and automatically solves them for you.
 
 ## 2. Before running
-We need to install some softwares and tools to support the project.
+#### We need to install some softwares and tools to support the project.
 * [Install Python 3.10.5](https://www.python.org/downloads/release/python-3105/) in your machine first.
-* Clone `Cyclone4Web` to your machine.
+* Clone `Cyclone4Web` to your machine (Linux is essential).
 * (Optional) Open CMD/Terminal and install the `virtualenv` by using the following command (this is a type of library that allows us to create a virtual environment and use it):
     ```
     > pip install virtualenv
@@ -37,8 +37,12 @@ We need to install some softwares and tools to support the project.
 * Make sure you have java (64 bit is recommended) installed on your machine.
 * [Download Cyclone](https://classicwuhao.github.io/cyclone_tutorial/installation.html) and Unzip it to a folder called `cyclone`.
 * Copy the entire `cyclone` folder to the root of the project
+* Install `graphviz` on your machine
+    ```
+    > sodu apt install graphviz
+    ```
 
-This is the well-configured project structure.
+#### This is the well-configured project structure.
 <div><img alt="project structure" src='screenshots/projectStructure.png' width=350></div>
 
 ## 3. Run project
