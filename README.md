@@ -1,4 +1,11 @@
 # Cyclone4Web - An online integrated development environment for Cyclone
+<p>
+<a href="https://img.shields.io/badge/statue-developing-yellow"><img alt="" src="https://img.shields.io/badge/statue-completed-purple"/></a>
+<a href="https://github.com/freestyletime"><img alt="author" src="https://img.shields.io/badge/author-Chris Chen-blue.svg"/></a>
+<a href="https://www.python.org/"><img alt="PYTHON" src="https://img.shields.io/badge/Python-3.10.5-orange.svg"/></a>
+<a href="https://flask.palletsprojects.com/en/2.0.x/"><img alt="Spring Boot" src="https://img.shields.io/badge/Flask-2.2.2-brightgreen.svg"/></a>
+<a href="https://github.com/freestyletime/Cyclone4Web/blob/main/LICENSE"><img alt="LICENSE" src="https://img.shields.io/github/license/freestyletime/Cyclone4Web.svg"/></a>
+</p>
 
 #### [Online Instance on Maynooth University](https://cyclone4web.cs.nuim.ie/editor/)
 
